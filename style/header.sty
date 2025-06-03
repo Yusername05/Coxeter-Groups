@@ -1,10 +1,11 @@
-\ProvidesPackage{style/theader}
+\ProvidesPackage{style/header}
 
-% Packages
+% PACKAGES
+
 %% Files
 \usepackage{subfiles}
 %% Symbols
-\usepackage{amsmath, amssymb, stmaryrd, verbatim} % math symbols
+\usepackage{amsmath, amssymb, amsthm, stmaryrd, verbatim} % math symbols
 \usepackage{mathdots}
 \usepackage{mathtools}
 %% Digrams
@@ -14,46 +15,68 @@
 \usepackage{nicematrix}
 \usepackage{graphicx}
 \usepackage{cancel}
-%% General formatting
-\usepackage[margin=1in]{geometry}
- \geometry{
- a4paper,
- total={170mm,257mm},
- left=20mm,
- top=20mm,
- } % Page shape
-\usepackage{fancyhdr}
+
 \usepackage[dvipsnames]{xcolor} % Fancy Colours
-%% Custom theorem formatting
-\usepackage{amsthm} % thm environment
-\usepackage{mdframed} % Customizable Boxes
-\usepackage{ifthen,xargs} % For defining better commands
 %% Misc
 \usepackage{perpage} %Changing counters
 \usepackage[utf8]{inputenc}
-\setlength{\parindent}{0pt}
-%% Referencing
-\usepackage{hyperref,nameref,cleveref,enumitem} % for references, hyperlinks
-\usepackage[backend=biber,
-            isbn=false,
-            doi=false,
-            giveninits=true,
-            style=alphabetic,
-            useprefix=true,
-            maxcitenames=4,
-            maxbibnames=4,
-            sorting=nyt,
-            citestyle=alphabetic]{biblatex}
 
-%Colors
-%%Bright
-\definecolor{TQB0}{RGB}{187,187,187}
-\definecolor{TQB1}{RGB}{68,119,170}
-\definecolor{TQB2}{RGB}{102,204,238}
-\definecolor{TQB3}{RGB}{34,136,51}
-\definecolor{TQB4}{RGB}{204,187,68}
-\definecolor{TQB5}{RGB}{238,102,119}
-\definecolor{TQB6}{RGB}{170,51,119}
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+%% Sets page size and margins
+\usepackage[a4paper,top=1in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+
+%% Useful packages
+\usepackage{afterpage}
+\usepackage{csquotes}
+\usepackage{enumitem}
+\usepackage{booktabs}
+
+% Center figure captions:
+\usepackage{caption}
+\captionsetup[figure]{labelfont={bf},name={Figure},labelsep=quad}
+\captionsetup[table]{labelfont={bf},name={Table},labelsep=quad}
+
+% ----------- Algorithm2e setup
+\usepackage[ruled,vlined]{algorithm2e}
+\makeatletter
+\renewcommand{\SetKwInOut}[2]{%
+  \sbox\algocf@inoutbox{\KwSty{#2}\algocf@typo:}%
+  \expandafter\ifx\csname InOutSizeDefined\endcsname\relax% if first time used
+    \newcommand\InOutSizeDefined{}\setlength{\inoutsize}{\wd\algocf@inoutbox}%
+    \sbox\algocf@inoutbox{\parbox[t]{\inoutsize}{\KwSty{#2}\algocf@typo:\hfill}~}\setlength{\inoutindent}{\wd\algocf@inoutbox}%
+  \else% else keep the larger dimension
+    \ifdim\wd\algocf@inoutbox>\inoutsize%
+    \setlength{\inoutsize}{\wd\algocf@inoutbox}%
+    \sbox\algocf@inoutbox{\parbox[t]{\inoutsize}{\KwSty{#2}\algocf@typo:\hfill}~}\setlength{\inoutindent}{\wd\algocf@inoutbox}%
+    \fi%
+  \fi% the dimension of the box is now defined.
+  \algocf@newcommand{#1}[1]{%
+    \ifthenelse{\boolean{algocf@inoutnumbered}}{\relax}{\everypar={\relax}}%
+%     {\let\\\algocf@newinout\hangindent=\wd\algocf@inoutbox\hangafter=1\parbox[t]{\inoutsize}{\KwSty{#2}\algocf@typo\hfill:}~##1\par}%
+    {\let\\\algocf@newinout\hangindent=\inoutindent\hangafter=1\parbox[t]{\inoutsize}{\KwSty{#2}\algocf@typo:\hfill}~##1\par}%
+    \algocf@linesnumbered% reset the numbering of the lines
+  }}%
+\makeatother
+% --------- end algorithm2e setup
+
+% bullshit
+\usepackage{bm}
+\usepackage[normalem]{ulem}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\renewcommand*{\rmdefault}{bch}
+\renewcommand*{\ttdefault}{lmtt}
+\newcommand{\citationneeded}{\textcolor{red}{[citation-needed]}}
+
+% Add bigger skip between paragraphs, makes reading easier:
+\setlength{\parskip}{0.5em}
+
+% Bibliography
+\usepackage[numbers, comma, square, sort&compress]{natbib}
+\bibliographystyle{abbrvunsrtnat.bst}
 
 %Math fonts
 %%Mathbb{
@@ -203,89 +226,8 @@
 \newcommand{\abr}[1]{\left\langle #1 \right\rangle} % Angle brackets
 \newcommand{\aabr}[1]{\left|\left\langle #1 \right\rangle\right|} %angle then abs
 \newcommand{\fbr}[1]{\left\lfloor #1 \right\rfloor} % Floor brackets
+% Theorem, Lemma, Corollary and Proofs
 
-% Functions
-
-\newcommand{\bijection}[7][]{    % Bijection
-  \ifx &#1&
-    \begin{array}{rcl}
-      #2 & \longleftrightarrow & #3 \\
-      #4 & \longmapsto         & #5 \\
-      #6 & \longmapsfrom       & #7
-    \end{array}
-  \else
-    \begin{array}{ccrcl}
-      #1 & : & #2 & \longrightarrow & #3 \\
-         &   & #4 & \longmapsto     & #5 \\
-         &   & #6 & \longmapsfrom   & #7
-    \end{array}
-  \fi
-}
-\newcommand{\correspondence}[2]{ % Correspondence
-  \cbr{
-    \begin{array}{c}
-      #1
-    \end{array}
-  }
-  \qquad
-  \leftrightsquigarrow
-  \qquad
-  \cbr{
-    \begin{array}{c}
-      #2
-    \end{array}
-  }
-}
-\newcommand{\function}[5][]{     % Function
-  \ifx &#1&
-    \begin{array}{rcl}
-      #2 & \longrightarrow & #3 \\
-      #4 & \longmapsto     & #5
-    \end{array}
-  \else
-    \begin{array}{ccrcl}
-      #1 & : & #2 & \longrightarrow & #3 \\
-         &   & #4 & \longmapsto     & #5
-    \end{array}
-  \fi
-}
-\newcommand{\functions}[7][]{    % Functions
-  \ifx &#1&
-    \begin{array}{rcl}
-      #2 & \longrightarrow & #3 \\
-      #4 & \longmapsto     & #5 \\
-      #6 & \longmapsto     & #7
-    \end{array}
-  \else
-    \begin{array}{ccrcl}
-      #1 & : & #2 & \longrightarrow & #3 \\
-         &   & #4 & \longmapsto     & #5 \\
-         &   & #6 & \longmapsto     & #7
-    \end{array}
-  \fi
-}
-
-% Operators {
-  \newcommand\newoperator[1]{\ifcsdef{#1}{\cslet{#1}{\relax}}{}\csdef{#1}{\operatorname{#1}}}
-%% categories / general
-  \newoperator{coeq}
-  \newoperator{eq}
-  \newoperator{Hom} %homsets
-  \newoperator{id}
-  \newoperator{im}
-  \newoperator{Mor} %class of all morphisms
-%% homotopy theory
-  \newoperator{const} %constant path
-  \newoperator{Fib}
-  \newoperator{Cof} %(co)fibrations in a model category
-  \newoperator{Con} %cone of a map
-  \newoperator{Cyl} %cylinder of a map
-  \newoperator{Proj}
-  \newoperator{Inj}
-  \newoperator{fact}
-%}
-
-% Theorem environments
 \theoremstyle{definition}
 
 \newtheorem{definition}[subsubsection]{Definition}
@@ -318,10 +260,3 @@
 \newtheorem{theorem}[subsubsection]{Theorem}
 \newtheorem*{theorem*}{Theorem}
 \newtheorem{theorem**}{Theorem}
-
-
-\renewcommand\labelitemi{-}
-\MakePerPage{footnote}
-\pagestyle{fancy}
-\lhead{\module}
-\rhead{\nouppercase{\leftmark}}
