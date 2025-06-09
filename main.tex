@@ -6,6 +6,8 @@
 \documentclass[a4paper,11pt, titlepage]{article}
 
 \usepackage{style/header}
+\usepackage{setspace}
+%\doublespacing % Add this if pages < 25
 
 \newcommand{\reporttitle}{Title}
 \newcommand{\reportauthorA}{Student name 1 (CID: -------------)}
@@ -49,8 +51,12 @@ examples, proofs, conjectures, codes etc. are your own? This is how you cite a r
 \section{Tits' word problem}
 \subfile{word/word.tex}
 
-\section{Decidability}
+\section{Euclidean Reflection Groups}
 \subfile{decidability/decidability.tex}
+
+\appendix
+\section{Model Theory Preliminaries}
+\subfile{decidability/models.tex}
 
 \bibliography{bibliography.bib}
 

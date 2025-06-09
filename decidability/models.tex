@@ -1,0 +1,85 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+
+We fix our language $\cL=(e,\cdot)$ to be the language of groups.
+
+\begin{definition}
+    The set of $\cL$-terms is the smallest set $\cT$ such that \begin{enumerate}
+        \item variables $x_i\in\cT$ for $i=0,1,\dots$;
+        \item if $t_1,t_2\in \cT$ then $(t_1 \cdot t_2)\in \cT$
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    The set of $\cL$-formulas is the smallest set $\cF$ such that \begin{enumerate}
+        \item all atomic formulas $(t_1=t_2)\in\cF$ for $t_1,t_2\in \cT$;
+        \item $\cF$ is closed under $\neg$ ("not"), $\vee$ ("or"), $\wedge$ ("and"), $\rightarrow$ ("implies"), $\forall$ ("for all"), $\exists$ ("there exists").
+    \end{enumerate}
+\end{definition}
+
+By drawing a truth table or otherwise, it suffices to define the satisfaction of $\wedge$, $\neg$, and quantifiers for $\cL$-formulas.
+
+\begin{definition}
+    We say a formula $\phi$ has $x$ as a free variable if $x$ does not appear in any quantifiers of $\phi$.
+\end{definition}
+
+\begin{definition}
+    Let $\phi$ be a formula with free variables $x_1,\dots,x_n$. We inductively define a group $G\models \phi$ as follows. \begin{enumerate}
+        \item If $\phi(\overline x)$ is $t_1(\overline x)=t_2(\overline x)$, then $G\models \phi$ if $t_1$ and $t_2$ are exactly the same term.
+        \item If $\phi(\overline x)$ is $\neg \psi(\overline x)$, then $G\models \phi(\overline x)$ if $G \nvDash \psi(\overline x)$.
+        \item If $\phi(\overline x)$ is $\psi_1(\overline x) \wedge \psi_2(\overline x)$, then $G\models \phi(\overline x)$ if $G\models \psi_1(\overline x)$ and $G\models \psi_2(\overline x)$.
+        \item If $\phi(\overline x)$ is $\forall y\psi(\overline x,y)$, then $G\models \phi(\overline x)$ if for all $a \in G$  $G\models \psi(\overline x, a)$.
+        \item If $\phi(\overline x)$ is $\exists y\psi(\overline x,y)$, then $G\models \phi(\overline x)$ if there is $a \in G$  $G\models \psi(\overline x, a)$.
+    \end{enumerate}
+
+    If $G\models \phi(\overline a)$ we say $\phi(\overline a)$ is true in $G$
+\end{definition}
+
+\begin{definition}
+    We say a formula $\phi$ is a sentence if it does not have free variables.
+\end{definition}
+
+
+
+To make the term algorithm clear, we recall definitions from computability theory.
+
+We have infinitely many initial configuration of the register $R_1,R_2,\dots$, each is a nonnegative integer.
+
+\begin{definition}
+    A register machine program is a finite sequence of instructions $I_1,\dots,I_M$, where each $I_j$ is one of the following:\begin{enumerate}
+        \item Z(n): set $R_n$ to zero;
+        \item S(n): increase $R_n$ by one;
+        \item T(n,m): set $R_n$ to be $R_m$;
+        \item J(n,m,s), where $1\leq s\leq M$: if $R_n=R_m$, then go to $I_s$, otherwise go to the next instruction;
+        \item HALT
+    \end{enumerate}
+    and $I_m$ is HALT
+\end{definition}
+
+\begin{definition}
+    Suppose $A\subseteq \bN^k$. $f:A\rightarrow \bN$ is computable if there is a register machine program $P$ such that:\begin{enumerate}
+        \item If $x\in A$, then $P$ does not halt on input $x$;
+        \item If $x\in A$, then $P$ halts on input $x$ with $R_1=f(x)$.
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    We say a set $A\subseteq \bN^k$ if the function\[
+    \chi_A(x) = 
+\begin{cases}
+1 & \text{if } x \in A, \\
+0 & \text{if } x \notin A.
+\end{cases}
+    \]
+    is computable.
+\end{definition}
+
+We then can say a theory of $G$ is decidable if the set of true sentences in $G$. We can make "input of $\phi$" more precise using G\"odel's coding.
+
+\begin{theorem}
+    The theory of $\bZ$ in the language of $(+,0,1,<,\equiv_p)$ where $\equiv_p$ is the relation of "two integers are same modolu $p$" is complete, admits quantifier elimination hence decidable.
+\end{theorem}
+
+
+
+\end{document}
