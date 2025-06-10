@@ -5,12 +5,12 @@
 
 This section follows \textcolor{red}{AB8, cite in final version}
 
-Let $W$ be an affine reflection group, naturally acting on the Euclidean space $V$, with fixed set of affine hyperplanes $\mathcal H$. We fix an arbitrary chamber $C$ as our fundamental chamber, $S$ be the set of reflection with respect to its walls. For an n-dimensional Euclidean space $V$, we have the isomorphism $\text{AO}(V) \cong V \rtimes \text{O}(V)$. Every element $\text{AO}(V)$ represents the composition of an orthogonal linear map with a transition $\tau_v$ sending $x$ to $x+v$. Note $W$ can be taken as a subgroup of $\text{AO}(V)$.
+Let $W$ be an affine reflection group, naturally acting on the Euclidean space $V$, with fixed set of affine hyperplanes $\mathcal H$. We fix an arbitrary chamber $C$ as our fundamental chamber, $S$ be the set of reflection with respect to its walls. Recall for an n-dimensional Euclidean space $V$, we have the isomorphism $\text{AO}(V) \cong V \rtimes \text{O}(V)$. Every element $\text{AO}(V)$ represents the composition of an orthogonal linear map with a transition $\tau_v$ sending $x$ to $x+v$. Note $W$ can be taken as a subgroup of $\text{AO}(V)$.
 
 \begin{theorem}\label{thm:finpara}
     \begin{enumerate}
         \item The hyperplanes $H\in \cH$ fall into finitely many classes under parallelism;
-        \item Let $\overline W$ be the image of $W$ under the projection $\eta: \text{AO}(V) \twoheadrightarrow \text O (V)$, then $\overline W$ is finite.
+        \item Let $\overline W$ be the image of $W$ under the projection $\eta: \text{AO}(V) \twoheadrightarrow \text{O} (V)$, then $\overline W$ is finite.
     \end{enumerate}
 \end{theorem}
 
@@ -30,7 +30,7 @@ Let $W$ be an affine reflection group, naturally acting on the Euclidean space $
 
 For a general affine reflection group, we can reduce it to essential, irreducible cases. If it is irreducible, then there are sets of hyperplanes $\cH_i$, each hyperplane in $\cH_i$ is orthogonal to the ones in other $\cH_j$'s. We can decompose the space into direct sum $V_1 \oplus \dots \oplus V_n$, where each $V_i$ corresponds to $\cH_i$, and the corresponding reflection group $W_i$ is irreducible in $V_i$. If $W_i$ is not essential, we can quotient the intersection of all hyperplanes out to get an essential one.
 
-\begin{theorem}
+\begin{theorem}\label{thm:indep}
     Assume $W$ is essential and irreducible in $n$-dimensional vector space $V$, then one of the following is true:\begin{enumerate}
         \item $W$ is finite, $C$ has $n$ walls;
         \item $W$ is infinite, $C$ has $n+1$ walls, and vectors perpendicular to any $n$ walls form a basis. $\overline C$ is compact.
@@ -38,30 +38,48 @@ For a general affine reflection group, we can reduce it to essential, irreducibl
 \end{theorem}
 
 \begin{proof}
-    
+    We first count the number of walls. Suppose the walls of $C$ are $H_1,\dots,H_k$, with corresponding normal vectors $e_1,\dots,e_k$ pointing to $C$. Since $W$ is essential, $e_1,\dots,e_k$ is a spanning set hence $k\geq n$.
+
+    Suppose $k=n$. Then the intersection of all $H_i$'s is a singleton. By shifting the planes we may assume $x=0$. Hence all $H_i$'s are linear and $W$ is a finite reflection group.
+
+    Suppose $k>n$, then the list of vectors must be linearly dependent. Choose an index set $I$ such that \[
+    \sum_{i\in I} \lambda_i e_i=0
+    \]
+    such that $\lambda_i \neq 0$ for all $i\in I$. We show $I=\{1,\dots,k\}$. Suppose not, then let $J=\{1,\dots,k\}\backslash I$. 
+
+    Starting from $\sum_{i\in I} \lambda_i e_i=0$, move the negative coefficients terms to the right \[
+    \sum_{i\in K} \lambda_i e_i=\sum_{i\in L} -\lambda_i e_i
+    \] where $K,L$ is a partition of $I$.
+    Then consider the inner product of left with right, by \textcolor{red}{Reference the theorem regarding inner product}, it is non-positive. But it is an inner product of two same vectors, then the summation is the $0$ vector.
+
+    Choose $j\in J$ and take inner product \[
+    \sum_{i\in K} \lambda_i \langle e_i,e_j\rangle =0
+    \]
+    For $i\in K$ $\lambda_i$ are positive and $\langle e_i,e_j\rangle$ are non-positive, we must have the case that $\langle e_i,e_j\rangle=0$, which implies $s_{e_i}s_{e_j}$ has order $2$. Then same thing holds for index set $L$. We then conclude the graph of $I$ and $J$ in Coxeter diagram are disconnected, contradicting irreducibility.
+
+    $C$ now has $n+1$ walls, so $C$ is a bounded set. In particular $\overline C$ is compact. Since $W$ is simply transitive, $\bigcup_{w\in W} w\overline C$ is compact if $W$ is finite, but this union covers $V$ so $W$ is infinite.
 \end{proof}
 
 \begin{definition}
-    A Euclidean reflection group is an infinite, irreducible, affine reflection group.
+    A Euclidean reflection group is an essential, infinite, irreducible, affine reflection group.
 \end{definition}
 
 For the rest of this section, let $W$ be a Euclidean reflection group. Let $T$ be the kernel of the projection above restricted on $W$, then we have a short exact sequence \[
 1\rightarrow T\rightarrow W \rightarrow\overline W \rightarrow 1
 \]
-By possibly taking quotient of the vector space $V$, we may assume that the intersection \[V_0=\bigcap_{s_H\in\overline W}H\] does not have positive dimension. In this case:
 
 \begin{proposition}\label{prop:special}
     There exists point $x\in V$ such that its group of stabilizers $W_x$ is isomorphic to $\overline W$. In particular, $W\cong T\rtimes W_x$.
 \end{proposition}
 
 \begin{proof}
-    By Theorem \ref{thm:finpara}, let $\overline {\cH}$ be the set of linear hyperplanes parallel to some affine planes of $\cH$. $\overline W$ is generated by reflection about these hyperplanes.  Choose $n$ hyperplanes $H_1,\dots,H_n$ from $\cH$, each parallel to a distinct linear hyperplane of these walls and take their intersection, which is a single point $x$ [Why? Consider this as a system of linear equations]. Linear parts of $s_{H_1},\dots s_{H_n}$ generates $\overline W$ and since translations have no fixed points, $W_x$ bijects to $\overline W$.
+    By Theorem \ref{thm:finpara}, let $\overline {\cH}$ be the set of linear hyperplanes parallel to some affine planes of $\cH$. $\overline W$ is generated by reflection about these hyperplanes.  Choose $n$ hyperplanes $H_1,\dots,H_n$ from $\cH$, each parallel to a distinct linear hyperplane of these walls and take their intersection, which is a single point $x$ by Theorem \ref{thm:indep}. Linear parts of $s_{H_1},\dots s_{H_n}$ generates $\overline W$ and since translations have no fixed points, $W_x$ bijects to $\overline W$.
 \end{proof}
 
 By Proposition \ref{prop:special}, with possibly shifting we can assume $0$ is a special point and hence $W\cong T\rtimes W_0\cong T \rtimes \overline W$. We can then identify $T$ by \[
 L := \{v \in V : \tau_v \in W\}
 \]
-as an additive group. 
+as a additive group. 
 
 We then have $W\cong L\rtimes \overline W\leq V \rtimes \text{O}(V)\cong \text{AO}(V)$
 We next show $L$ is a lattice i.e.   $L$ is in the form of $\bZ e_1\oplus \dots \oplus \bZ e_n$ for $\{e_i\}_{1\leq i\leq n}$ a basis of $V$
@@ -93,13 +111,106 @@ The next lemma is from theory of topological groups:
 We are now left to show the set of linearly independent vectors given in Lemma \ref{lem:latt} is a basis of $V$.
 
 \begin{lemma}
-    In the context of Lemma \ref{lem:latt}, r=n.
+    In the context of Lemma \ref{lem:latt}, $r=n$.
 \end{lemma}
 
 \begin{proof}
-    Since $\overline{W}$ is generated by $n$ reflections
+    Since for any $v\in V$, there is $w\in W$ and $y\in \overline C$ such that $v=wy$. $w$ is $\tau_v\overline w$ for $\overline w\in \overline W$ and $\tau_v\in L$. Thus $v$ is equivalent to some $y\in \bigcup_{\overline w\in\overline W}\overline wC$ modulo $L$. It is a compact set since it is a finite union of compact ones. $L$ is a lattice thus $r=n$.
 \end{proof}
 
+We end this section by giving some examples of Euclidean reflection groups in low dimension vector spaces.
+
+For $\bR^1$, there is only one finite reflection group $S_2$ with hyperplane $0$, we can add $1$ and these two points generates an affine reflection group, each element corresponds to a reflection about $k\in \bZ$. This is called $D_{\infty}$ with Coxeter diagram 
+
+\begin{tikzpicture}
+    \begin{scope}[shift={(0,0)}]
+        \begin{scope}[every node/.style={circle, fill=black, draw, thick, minimum size = 6pt, inner sep=0pt}]
+            \node (1) at (2,-0.5) {};
+            \node (2) at (3,-0.5) {};
+        \end{scope}
+
+        \begin{scope}[every edge/.style={draw,very thick}]
+            \path [-] (1) edge (2);
+            \node at (2.5,-0.3) {$\infty$};
+
+        \end{scope}
+    \end{scope}
+\end{tikzpicture}
+
+This is isomorphic to $\bZ \rtimes S_2$.
+
+For $\bR^2$, for example we can tile the whole space with equilateral triangles. So let it be the chamber and we have a diagram 
+
+\begin{tikzpicture}
+    \begin{scope}[shift={(0,0)}]
+        \begin{scope}[every node/.style={circle, fill=black, draw, thick, minimum size = 6pt, inner sep=0pt}]
+            \node (1) at (2,-0.5) {};
+            \node (2) at (3,-0.5) {};
+            \node (3) at (2.5,0.36) {};
+        \end{scope}
+
+        \begin{scope}[every edge/.style={draw,very thick}]
+            \path [-] (1) edge (2);
+            \path [-] (2) edge (3);
+            \path [-] (1) edge (3);
+
+        \end{scope}
+    \end{scope}
+\end{tikzpicture}
+
+This group is isomorphic to $\bZ^2 \rtimes D_6$.
+
+We can tile with hexagon but themselves cannot be chambers, but we can split each into 12 30-60-90 triangles. Let it be the chamber and we have a diagram 
+
+\begin{tikzpicture}
+    \begin{scope}[shift={(0,0)}]
+        \begin{scope}[every node/.style={circle, fill=black, draw, thick, minimum size = 6pt, inner sep=0pt}]
+            \node (1) at (2,-0.5) {};
+            \node (2) at (3,-0.5) {};
+            \node (3) at (4,-0.5) {};
+        \end{scope}
+
+        \begin{scope}[every edge/.style={draw,very thick}]
+            \path [-] (1) edge (2);
+            \path [-] (2) edge (3);
+            \node at (2.5,-0.3) {$6$};
+
+        \end{scope}
+    \end{scope}
+\end{tikzpicture}
+
+which is the group $\bZ_2 \rtimes D_{12}$.
+
+In fact, for most finite reflection groups $\overline W$ , essential an irreducible, have affine analogous. For these groups, let $V$ be the vector space they are acting on of dimension $n$. We can realise $V\rtimes\text{O}(V)$ as an inner semidirect product of $\text{AO}(V)$. Define $L$ to be the $n$-rank lattice of $V$. Then we can define an inner semidirect product $L\rtimes \overline W$ which gives us the affine analogue of $\overline W$. An example is the finite reflection groups of type $A_n$, which can be realised as reflection about planes $x_i-x_j=0$ $(i\neq j)$ in the vector space $V=\{(x_1,\dots,x_n)\in\bR^n:\sum x_i=0\}$ with $\cH := \{x_i-x_j=k:k\in \bZ, i\neq j\}$. One can check $\cH$ in fact gives a Euclidean reflection group with the Coxeter diagram
+
+\begin{tikzpicture}
+    \begin{scope}[shift={(0,0)}]
+        \begin{scope}[every node/.style={circle, fill=black, draw, thick, minimum size = 6pt, inner sep=0pt}]
+            \node (1) at (2,0) {};
+            \node (2) at (4,0) {};
+            \node (3) at (6,0) {};
+            \node (n-2) at (10,0) {};
+            \node (n-1) at (12,0) {};
+            \node (n) at (14,0) {};
+            \node (a) at (8,1.5) {};
+        \end{scope}
+        \node (3a) at (7,0) {};
+        \node (3b) at (9,0) {};
+        \begin{scope}[every edge/.style={draw,very thick}]
+            \path [-] (1) edge (2);
+            \path [-] (2) edge (3a);
+            \path [loosely dashed] (3a.west) edge (3b.east);
+            \path [-] (3b) edge (n-1);
+            \path [-] (n-1) edge (n);
+            \path [-] (a) edge (1);
+            \path [-] (a) edge (n);
+        \end{scope}
+    \end{scope}
+\end{tikzpicture}
+
+with $n$ nodes in the graph.
+
+A non-example is of type $I_2(m)$ except for some specific $m$. There is not way to cover the whole plane using reflections using triangle with an angle $<2\pi/12$ or of $2\pi/7$ for example.
 
 \subsection{Some Model Theory of Euclidean Reflection Groups}
 
@@ -140,7 +251,10 @@ This result follows from the following two lemmas:
 
 \begin{proof}
     Since there are finitely many $\pi_x$'s, it suffices to show we can define $\pi_x$ in $(\mathbb Z, +, 0)$ for some $x\in Q$. $\pi_x$ is an automorphism of $\mathbb Z^d$, which is an $d\times d$ invertible matrix $A$ over $\mathbb Z$.
-    $\pi_x(\overline b)=A\overline b$ is simply a matrix multiplication so clearly definable over $A$.
+    $\pi_x(\overline b)=A\overline b$ is a matrix multiplication. We only need to show we can define the element-wise multiplication part is definable. To show this, note that we all elements in $A$ is bounded. The multiplication of $n\times b$ where $n$ is an entry of $A$ and $b$ is an arbitary integer, can be realised as \[
+    \underbrace{b+b+\dots+b}_\text{$n$ times}
+    \]
+    if $n$ is positive and otherwise minus $b$ $-n$ times.
 \end{proof}
 
 \begin{theorem}
