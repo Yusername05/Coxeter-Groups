@@ -182,7 +182,7 @@ And the contrasting way to compute the length: for any $w\in W$ consider the set
 \end{lemma}
 
 \begin{lemma}
-    Choose a simple hyperplane $H_i$, for any hyperplane $H\neq H_i$ and $w\in W$, if $H\in \cL(w)$ then $s_i\in \cL(s_i w)$.
+    Choose a simple hyperplane $H_i$, for any hyperplane $H\neq H_i$ and $w\in W$, if $H\in \cL(w)$ then $s_iH\in \cL(s_i w)$.
     \begin{proof}
         As $H$ separates $C_0$ and $wC_0$, $s_iH$ separates $s_i C_0$ and $s_i w C_0$, so $s_i H$ is in exactly one of $\cL(s_i)$ or $\cL(s_i w)$, but if $s_i H \in \cL(s_i)$ we would have $s_i H = H_i \implies H=H_i$ a contradiction. Therefore $s_i H \in \cL(s_i w)$.
     \end{proof}
@@ -201,39 +201,617 @@ And the contrasting way to compute the length: for any $w\in W$ consider the set
     \end{proof}
 \end{proposition}
 
-\begin{theorem}[Deletion Condition]
-    If $w=s_1\cdots s_r$ is a expression of non reduced length, i.e. $r<l(w)$, then there exists indices $1\leq i < j \leq r$ such that omiting $s_i$ and $s_j$ from the expression leaves $w$ unchanged.
+Now to show $n(w)=l(w)$ we will enumerate the hyperplanes in $\cL(w)$.
+
+\begin{lemma}
+    If $w=s_1\cdots s_r$ is a reduced expression for $w$ in terms of simple reflections, the hyperplanes:\[
+        H_1, s_1 H_2, s_1s_2H_3,\ldots s_1\cdots s_{r-1} H_r
+    \] are all distinct.
     \begin{proof}
-        it suffices to show that such $i$ and $j$ exist such that $s_is_{i+1}\cdots s_{j-1}s_j = s_{i+1}\cdots s_{j-1}$
+        Suppose, for a contraditction, that there exists some $1\leq i < j \leq r$ such that the hyperplanes $s_1 \cdots s_{i-1} H_i$ and $s_1\cdots s_{j-1} H_j$ are equal, by applying $s_1\cdots s_{i-1}$ to both sides this implies $H_i = s_i\cdots s_{j-1}H_j$, by an earlier corollary this implies $s_i = (s_I\cdots s_{j-1})s_j(s_{j-1}\cdots s_i)$ which implies $s_{i+1}\cdots s_{j-1} = s_i\cdots s_j$ contradicting the minimality of the lenght of $w$.
     \end{proof}
-\end{theorem}
+\end{lemma}
 
-\newpage
-
-The length of a word in terms of simple reflections corresponds to the number of plane between a fundamental domain and its image. This implies the action on fundamental domains is in fact \textbf{simply} transitive.
-
-\begin{proposition}[Deletion condition]
-    Given an unreduced expression $w=r_1\cdots r_k$ there exists $1\leq i < j \leq k$ such that $w=r_1\cdots\hat{r_i}\cdots\hat{r_j}\cdots r_k$, where the hat means ommitance.
+\begin{proposition}
+    If $w=s_1\cdots s_r$ is a reduced expression for $w$ in terms of simple reflections: \[
+        \cL(w) = \{H_1, s_1 H_2, s_1s_2H_3,\ldots s_1\cdots s_{r-1} H_r\}
+    \]
+    \begin{proof}
+        We go by induction on $r$. Observe the base case $\cL(s_1) = \{H_1\}$ from an earlier lemma. Now assume the claim holds for all $w$ with reduced length $<r$ specifically:\[
+            \cL(s_1w) = \{H_2, s_2H_3,\ldots s_2\cdots s_{r-1} H_r\}
+        \] we know from an earlier lemma $H_1$ is in exactly one of $\cL(w)$ or $\cL(s_1w)$. If $H_1\in \cL(s_1w)$ by applying $s_1$ we would have for some $i>1$: \[
+            s_1H_1 = H_1 = s_1\cdots s_i H_i
+        \] which contradicts the previous lemma, thus $H_1\in \cL(w)$, combining this with the earlier corollary gives the desired result.
+    \end{proof}
 \end{proposition}
 
-\begin{proposition}[Exchange condition]
-    For $w=r_1\cdots r_k$ a not necessarily reduced expression and some simple $r\in W$ with $l(wr)<l(w)$, then there exists an $1\leq i\leq k$ s.t. $wr = r_1\cdots\hat{r_i}\cdots r_k$.
-\end{proposition}
+A direct consequence of this propsition is that if some $w\in W$ is such that $wC_0 = C_0$ then $\cL(w)=\emptyset$ which implies $w=\text{id}$ in reduced form. We know this is sufficient to say the action of $W$ on the set of chambers is simply transitive.
 
-\begin{theorem}
-    Any non-trivial relation in a reflection group is a consequence of the Coxeter relations.
+We can now prove two key combinatorial properties of the reflection group, and use these to show all relations in $W$ are direct consequences of those in the Coxeter presentation.
+
+\begin{theorem}[Exchange Condition]
+    If $w\in W$ has reduced expression in terms of simple reflections $w=s_1\cdots s_r$ and $l(sw)<l(w)$ for some simple reflection $s$, there exists some $1\leq i\leq r$ such that $sw = ss_1\cdots s_{i-1}s_{i+1}\cdots s_r$.
+    \begin{proof}
+        We know:\[
+            \cL(w) = \{H_1, s_1 H_2, s_1s_2H_3,\ldots s_1\cdots s_{r-1} H_r\}
+        \] by a previous proposition we know $H$, the hyperplane corresponding to $s$, must lie in $\cL(w)$ and so for some $1\leq i \leq r$, $H=s_1\cdots s_{i-1} H_i$ which implies $s=s_1\cdots s_{i-1} s_i s_{i-1}\cdots s_1$ therefore $ss_1\cdots s_{i-1} = s_1\cdots s_i$. Substituting this back into $w$ gives the desired result.
+    \end{proof}
 \end{theorem}
 
 \subsection{Classification}
 
-\begin{itemize}
-    \item show the graph is well defined up isometryish
-    \item disjoint unions of graphs correspond to products of groups
-    \item bilinear form of a coxeter group
-    \item if positive definite, the coxeter group is finite
-    \item classify positive-definite forms
-    \item all of which can be seen as reflection groups of regular polyhedra. some of which will be described in the previous section?
-\end{itemize}
+\begin{definition}
+    To a Coxeter system $(W,S)$, with $n=|S|$, we can associate a real symmetric $n\times n$ matrix $A$, by setting $a_{ij}:= -\cos(\pi/m_{ij})$. The quadratic form $Q(v) = v^\top A v$ on $E$ is called the \textbf{associated quadratic form} of the Coxeter system.
+\end{definition}
+
+We can realise each $a_{ij}$ as the inner product of simple roots $(\alpha_i,\alpha_j)$ corresponding the the reflection $s_i,s_j$. Such matrices are called \textbf{Gram matrices}.
+
+\begin{proposition}
+    The quadratic form associated to a finite reflection group $W$ is positive definite.
+    \begin{proof}
+        As $\Phi$ forms a basis for $E$ there is an invertible change of basis matrix $B$ form the standard basis to $\Phi$, we can thus write $A=B^\top B$ and for any nonzero $v\in E$ have:\[
+        Q(v) = v^\top A v = v^\top B^\top B v = (B v)^\top (B v) = \norm{B v}^2 > 0
+        \] as $B$ is a linear transformation acting on $v\neq 0$, therefore $Q$ is positive definite.
+    \end{proof}
+\end{proposition}
+
+We now want to fix a quadratic form $Q(v) = v^\top A v$ for some symmetric $A\in\cM_n(\bR)$.
+
+\begin{lemma}
+    The kernel of $Q$ (the set of vectors $v\in E$ such that $Q(v)=0$) equals the nullspace of $A$.
+    \begin{proof}
+        The nullspace of $A$ obviously lies in the kernel of $Q$. From linear algebra 2 we know we can orthogonally diagonalise $A$ and so we can write: \[
+            Q(v) = v^\top A v = v^\top P^\top D P v = (P v)^\top D (P v)
+        \] where $P$ and $D$ are some orthogonal and diagonal matrices respectively. Observe the right hand side is $0$ iff for ever $1\leq i \leq n$ either $d_{ii}$ or $(P v)_i$ are $0$. This implies $D (P v)=0$ and thus $v$ is in the nullspace of $A$.
+    \end{proof}
+\end{lemma}
+
+We will now demand all of the off-diagonal entries of $A$ be nonpositive, note that all of the matrices for quadratic forms associated with Coxeter diagrams will satisfy this condition.
+
+\begin{lemma}
+    The only nonzero vectors in the nullspace of $A$ have all coordinates nonzero.
+    \begin{proof}
+        First suppose $v\neq 0$ is in the nullspace of $A$, then by the previous lemma we know $Q(v)=0$. Consider the vector $u$ given by $u_i = |v_i|$, we will have $Q(u) = u^\top A u \geq 0$, but as all off-diagonal entries of $A$ are nonpositive this will satisfy $Q(u)\leq Q(v) = 0$. Thus $u$ is also in the nullspace of $A$. So if the nullspace is nontrivial, it will always contain a vector with nonnegative coordinates. 
+
+        If we suppose some, but not all, of these coordinates are zero we can consider the set of such indices $I$. For any $i\in I$ consider the $i$th term in $Au$:\[
+            (Au)_i = \sum_{j\notin I}a_{ij} |v_j| = 0
+        \] as all the $a_{ij}$ are nonpositive and all the $|v_j|$ are strictly positive, we get that for all $i\in I, j\notin I$ the entries $a_{ij}=0$ contradicting irreducibility of $A$. Thus the coordinates of all vectors in the nullspace of $A$ are nonzero.
+    \end{proof}
+\end{lemma}
+
+\begin{corollary}
+    The dimension of the nullspace of $A$ will be at most $1$.
+\end{corollary}
+
+\begin{lemma}
+    The smallest eigenvalue $d$ of $A$ has multiplicity $1$, and its coordinates will all be positive.
+    \begin{proof}
+        Again, from linear algebra 2 we know all the eigenvalues of a positive semidefinite matrix are nonnegative. So $A-dI$ satisfies all the requirement we placed on $A$ for the previous lemma. As $A-dI$ is singular it will have nonempty nullspace which must be of dimension exactly $1$. Thus $d$ and $u_i = |d_i|$ are colinear so we can find an eigenvalue with all positive coordinates.
+    \end{proof}
+\end{lemma}
+
+\begin{definition}
+    Subgraph
+\end{definition}
+
+\begin{proposition}
+    If $Q$ is positive semidefinite and $Q'$ comes from a proper subsystem, then $Q'$ will be positive definite.
+    \begin{proof}
+        Suppose $A'$ fails to be positive definite, i.e. there exists some $v\in E$ such that $Q'(v)\leq 0$, consider the vector:\[
+            u_i = \begin{cases}
+                |v_i| & 1\leq i \leq k\\
+                0 & \text{otherwise}
+            \end{cases}
+        \] and the value of: \[
+        0\leq Q(u) = \sum_{1\leq i,j\leq n} a_{ij}u_i u_j \leq \sum_{1\leq i,j\leq k} a'_{ij}v_i v_j \leq 0
+        \] as all the $a_{ij}\leq a'_{ij}\leq 0$. This means $u$ is in the nullspace for $A$ and thus all the coordinates are nonzero which means $k=n$. But this then implies all $a_ij = a'_ij$. Thus the only subdiagram that fails to be positive definite is improper.
+    \end{proof}
+\end{proposition}
+
+Here is a collection of Coxeter diagrams all of which, by checking their eigenvalues on a computer, can be found to be positive definite.
+
+\begin{figure}[H]
+\begin{tikzpicture}[scale = 0.8]
+    \begin{scope}[shift={(0,0)}]
+        \node at (0,0) {$A_n$};
+        \begin{scope}[every node/.style={circle, fill=black, draw, thick, minimum size = 6pt, inner sep=0pt}]
+            \node (1) at (1,0) {};
+            \node (2) at (2,0) {};
+            \node (3) at (3,0) {};
+            \node (n-2) at (5,0) {};
+            \node (n-1) at (6,0) {};
+            \node (n) at (7,0) {};
+        \end{scope}
+        \node (3a) at (3.5,0) {};
+        \node (3b) at (4.5,0) {};
+        \begin{scope}[every edge/.style={draw,very thick}]
+            \path [-] (1) edge (2);
+            \path [-] (2) edge (3a);
+            \path [loosely dashed] (3a.west) edge (3b.east);
+            \path [-] (3b) edge (n-1);
+            \path [-] (n-1) edge (n);
+        \end{scope}
+        \node at (8,0) {$(n\geq 1)$};
+    \end{scope}
+
+    \begin{scope}[shift={(0,-1)}]
+        \node at (0,0) {$BC_n$};
+        \begin{scope}[every node/.style={circle, fill=black, draw, thick, minimum size = 6pt, inner sep=0pt}]
+            \node (1) at (1,0) {};
+            \node (2) at (2,0) {};
+            \node (3) at (3,0) {};
+            \node (n-2) at (5,0) {};
+            \node (n-1) at (6,0) {};
+            \node (n) at (7,0) {};
+        \end{scope}
+        \node (3a) at (3.5,0) {};
+        \node (3b) at (4.5,0) {};
+        \begin{scope}[every edge/.style={draw,very thick}]
+            \path [-] (1) edge (2);
+            \path [-] (2) edge (3a);
+            \path [loosely dashed] (3a.west) edge (3b.east);
+            \path [-] (3b) edge (n-1);
+            \path [-] (n-1) edge (n);
+            \node at (6.5,0.3) {$4$};
+        \end{scope}
+        \node at (8,0) {$(n\geq 2)$};
+    \end{scope}
+
+    \begin{scope}[shift={(10,-1)}]
+        \node at (0,0) {$D_n$};
+        \begin{scope}[every node/.style={circle, fill=black, draw, thick, minimum size = 6pt, inner sep=0pt}]
+            \node (1) at (1,0) {};
+            \node (2) at (2,0) {};
+            \node (3) at (3,0) {};
+            \node (n-2) at (5,0) {};
+            \node (n-1) at (6,0) {};
+            \node (n-1a) at (6,1) {};
+            \node (n) at (7,0) {};
+        \end{scope}
+        \node (3a) at (3.5,0) {};
+        \node (3b) at (4.5,0) {};
+        \begin{scope}[every edge/.style={draw,very thick}]
+            \path [-] (1) edge (2);
+            \path [-] (2) edge (3a);
+            \path [loosely dashed] (3a.west) edge (3b.east);
+            \path [-] (3b) edge (n-1);
+            \path [-] (n-1) edge (n-1a);
+            \path [-] (n-1) edge (n);
+        \end{scope}
+        \node at (8,0) {$(n\geq 4)$};
+    \end{scope}
+
+    \begin{scope}[shift={(0,-3)}]
+        \node at (0,0) {$E_6$};
+        \begin{scope}[every node/.style={circle, fill=black, draw, thick, minimum size = 6pt, inner sep=0pt}]
+            \node (1) at (1,0) {};
+            \node (2) at (2,0) {};
+            \node (3) at (3,0) {};
+            \node (4) at (3,1) {};
+            \node (5) at (4,0) {};
+            \node (6) at (5,0) {};
+        \end{scope}
+        \begin{scope}[every edge/.style={draw,very thick}]
+            \path [-] (1) edge (2);
+            \path [-] (2) edge (3);
+            \path [-] (3) edge (4);
+            \path [-] (3) edge (5);
+            \path [-] (5) edge (6);
+        \end{scope}
+    \end{scope}
+
+    \begin{scope}[shift={(0,-5)}]
+        \node at (0,0) {$E_7$};
+        \begin{scope}[every node/.style={circle, fill=black, draw, thick, minimum size = 6pt, inner sep=0pt}]
+            \node (1) at (1,0) {};
+            \node (2) at (2,0) {};
+            \node (3) at (3,0) {};
+            \node (4) at (4,0) {};
+            \node (5) at (4,1) {};
+            \node (6) at (5,0) {};
+            \node (7) at (6,0) {};
+        \end{scope}
+        \begin{scope}[every edge/.style={draw,very thick}]
+            \path [-] (1) edge (2);
+            \path [-] (2) edge (3);
+            \path [-] (3) edge (4);
+            \path [-] (4) edge (5);
+            \path [-] (4) edge (6);
+            \path [-] (6) edge (7);
+        \end{scope}
+    \end{scope}
+
+    \begin{scope}[shift={(0,-7)}]
+        \node at (0,0) {$E_8$};
+        \begin{scope}[every node/.style={circle, fill=black, draw, thick, minimum size = 6pt, inner sep=0pt}]
+            \node (1) at (1,0) {};
+            \node (2) at (2,0) {};
+            \node (3) at (3,0) {};
+            \node (4) at (4,0) {};
+            \node (5) at (5,0) {};
+            \node (6) at (5,1) {};
+            \node (7) at (6,0) {};
+            \node (8) at (7,0) {};
+        \end{scope}
+        \begin{scope}[every edge/.style={draw,very thick}]
+            \path [-] (1) edge (2);
+            \path [-] (2) edge (3);
+            \path [-] (3) edge (4);
+            \path [-] (4) edge (5);
+            \path [-] (5) edge (6);
+            \path [-] (5) edge (7);
+            \path [-] (7) edge (8);
+        \end{scope}
+    \end{scope}
+
+    \begin{scope}[shift={(10,-2)}]
+        \node at (0,0) {$F_4$};
+        \begin{scope}[every node/.style={circle, fill=black, draw, thick, minimum size = 6pt, inner sep=0pt}]
+            \node (1) at (1,0) {};
+            \node (2) at (2,0) {};
+            \node (3) at (3,0) {};
+            \node (4) at (4,0) {};
+        \end{scope}
+        \begin{scope}[every edge/.style={draw,very thick}]
+            \path [-] (1) edge (2);
+            \path [-] (2) edge (3);
+            \path [-] (3) edge (4);
+            \node at (2.5,0.3) {$4$};
+        \end{scope}
+    \end{scope}
+
+    \begin{scope}[shift={(10,-3)}]
+        \node at (0,0) {$H_3$};
+        \begin{scope}[every node/.style={circle, fill=black, draw, thick, minimum size = 6pt, inner sep=0pt}]
+            \node (1) at (1,0) {};
+            \node (2) at (2,0) {};
+            \node (3) at (3,0) {};
+        \end{scope}
+        \begin{scope}[every edge/.style={draw,very thick}]
+            \path [-] (1) edge (2);
+            \path [-] (2) edge (3);
+            \node at (1.5,0.3) {$5$};
+        \end{scope}
+    \end{scope}
+
+    \begin{scope}[shift={(10,-4)}]
+        \node at (0,0) {$H_4$};
+        \begin{scope}[every node/.style={circle, fill=black, draw, thick, minimum size = 6pt, inner sep=0pt}]
+            \node (1) at (1,0) {};
+            \node (2) at (2,0) {};
+            \node (3) at (3,0) {};
+            \node (4) at (4,0) {};
+        \end{scope}
+        \begin{scope}[every edge/.style={draw,very thick}]
+            \path [-] (1) edge (2);
+            \path [-] (2) edge (3);
+            \path [-] (3) edge (4);
+            \node at (1.5,0.3) {$5$};
+        \end{scope}
+    \end{scope}
+
+    \begin{scope}[shift={(10,-5)}]
+        \node at (0,0) {$I_2(m)$};
+        \begin{scope}[every node/.style={circle, fill=black, draw, thick, minimum size = 6pt, inner sep=0pt}]
+            \node (1) at (1,0) {};
+            \node (2) at (2,0) {};
+        \end{scope}
+        \begin{scope}[every edge/.style={draw,very thick}]
+            \path [-] (1) edge (2);
+            \node at (1.5,0.3) {$m$};
+            \node at (3,0) {$(m\geq 4)$};
+        \end{scope}
+    \end{scope}
+\end{tikzpicture}
+\caption{Positive definite Coxeter diagrams}
+\label{fig:posdef}
+\end{figure}
+
+And here is another collection who can all be founded to be only positive semidefinite:
+
+\begin{figure}[H]
+\begin{tikzpicture}[scale = 0.8]
+    
+    \begin{scope}[shift={(0,0)}] %An
+        \node at (0,0) {$\tilde{A}_n$};
+        \begin{scope}[every node/.style={circle, fill=black, draw, thick, minimum size = 6pt, inner sep=0pt}]
+            \node (1) at (1,0) {};
+            \node (2) at (2,0) {};
+            \node (3) at (3,0) {};
+            \node (n-2) at (5,0) {};
+            \node (n-1) at (6,0) {};
+            \node (n) at (7,0) {};
+            \node (mid) at (4,1) {};
+        \end{scope}
+        \node (3a) at (3.5,0) {};
+        \node (3b) at (4.5,0) {};
+        \begin{scope}[every edge/.style={draw,very thick}]
+            \path [-] (1) edge (2);
+            \path [-] (2) edge (3a);
+            \path [loosely dashed] (3a.west) edge (3b.east);
+            \path [-] (3b) edge (n-1);
+            \path [-] (n-1) edge (n);
+            \path [-] (1) edge (mid);
+            \path [-] (n) edge (mid);
+        \end{scope}
+        \node at (8,0) {$(n\geq 2)$};
+    \end{scope}
+
+    \begin{scope}[shift={(10,1)}] %A1
+        \node at (0,0) {$\tilde{A}_1$};
+        \begin{scope}[every node/.style={circle, fill=black, draw, thick, minimum size = 6pt, inner sep=0pt}]
+            \node (1) at (1,0) {};
+            \node (2) at (2,0) {};
+        \end{scope}
+        \begin{scope}[every edge/.style={draw,very thick}]
+            \path [-] (1) edge (2);
+            \node at (1.5,0.3) {$\infty$};
+        \end{scope}
+    \end{scope}
+
+    \begin{scope}[shift={(15,1)}] %bc2
+        \node at (-0.6,0) {$\tilde{B}_2=\tilde{C}_2$};
+        \begin{scope}[every node/.style={circle, fill=black, draw, thick, minimum size = 6pt, inner sep=0pt}]
+            \node (1) at (1,0) {};
+            \node (2) at (2,0) {};
+            \node (3) at (3,0) {};
+        \end{scope}
+        \begin{scope}[every edge/.style={draw,very thick}]
+            \path [-] (1) edge (2);
+            \path [-] (2) edge (3);
+            \node at (1.5,0.3) {$4$};
+            \node at (2.5,0.3) {$4$};
+        \end{scope}
+    \end{scope}
+
+    \begin{scope}[shift={(10,0)}] %cn
+        \node at (0,0) {$\tilde{C}_n$};
+        \begin{scope}[every node/.style={circle, fill=black, draw, thick, minimum size = 6pt, inner sep=0pt}]
+            \node (1) at (1,0) {};
+            \node (2) at (2,0) {};
+            \node (3) at (3,0) {};
+            \node (n-2) at (5,0) {};
+            \node (n-1) at (6,0) {};
+            \node (n) at (7,0) {};
+        \end{scope}
+        \node (3a) at (3.5,0) {};
+        \node (3b) at (4.5,0) {};
+        \begin{scope}[every edge/.style={draw,very thick}]
+            \path [-] (1) edge (2);
+            \path [-] (2) edge (3a);
+            \path [loosely dashed] (3a.west) edge (3b.east);
+            \path [-] (3b) edge (n-1);
+            \path [-] (n-1) edge (n);
+            \node at (6.5,0.3) {$4$};
+            \node at (1.5,0.3) {$4$};
+        \end{scope}
+        \node at (8,0) {$(n\geq 3)$};
+    \end{scope}
+
+    \begin{scope}[shift={(10,-2)}] %bn
+        \node at (0,0) {$\tilde{B}_n$};
+        \begin{scope}[every node/.style={circle, fill=black, draw, thick, minimum size = 6pt, inner sep=0pt}]
+            \node (1) at (1,0) {};
+            \node (2) at (2,0) {};
+            \node (2a) at (2,1) {};
+            \node (3) at (3,0) {};
+            \node (n-2) at (5,0) {};
+            \node (n-1) at (6,0) {};
+            \node (n) at (7,0) {};
+        \end{scope}
+        \node (3a) at (3.5,0) {};
+        \node (3b) at (4.5,0) {};
+        \begin{scope}[every edge/.style={draw,very thick}]
+            \path [-] (1) edge (2);
+            \path [-] (2) edge (3a);
+            \path [loosely dashed] (3a.west) edge (3b.east);
+            \path [-] (3b) edge (n-1);
+            \path [-] (2) edge (2a);
+            \path [-] (n-1) edge (n);
+            \node at (6.5,0.3) {$4$};
+        \end{scope}
+        \node at (8,0) {$(n\geq 3)$};
+    \end{scope}
+
+    \begin{scope}[shift={(10,-4)}] %dn
+        \node at (0,0) {$\tilde{D}_n$};
+        \begin{scope}[every node/.style={circle, fill=black, draw, thick, minimum size = 6pt, inner sep=0pt}]
+            \node (1) at (1,0) {};
+            \node (2) at (2,0) {};
+            \node (2a) at (2,1) {};
+            \node (3) at (3,0) {};
+            \node (n-2) at (5,0) {};
+            \node (n-1) at (6,0) {};
+            \node (n-1a) at (6,1) {};
+            \node (n) at (7,0) {};
+        \end{scope}
+        \node (3a) at (3.5,0) {};
+        \node (3b) at (4.5,0) {};
+        \begin{scope}[every edge/.style={draw,very thick}]
+            \path [-] (1) edge (2);
+            \path [-] (2) edge (2a);
+            \path [-] (2) edge (3a);
+            \path [loosely dashed] (3a.west) edge (3b.east);
+            \path [-] (3b) edge (n-1);
+            \path [-] (n-1) edge (n-1a);
+            \path [-] (n-1) edge (n);
+        \end{scope}
+        \node at (8,0) {$(n\geq 4)$};
+    \end{scope}
+
+    \begin{scope}[shift={(0,-3)}] %e6
+        \node at (0,0) {$\tilde{E}_6$};
+        \begin{scope}[every node/.style={circle, fill=black, draw, thick, minimum size = 6pt, inner sep=0pt}]
+            \node (1) at (1,0) {};
+            \node (2) at (2,0) {};
+            \node (3) at (3,0) {};
+            \node (3a) at (3,1) {};
+            \node (3b) at (3,2) {};
+            \node (4) at (4,0) {};
+            \node (5) at (5,0) {};
+        \end{scope}
+        \begin{scope}[every edge/.style={draw,very thick}]
+            \path [-] (1) edge (2);
+            \path [-] (2) edge (3);
+            \path [-] (3) edge (3a);
+            \path [-] (3a) edge (3b);
+            \path [-] (3) edge (4);
+            \path [-] (4) edge (5);
+        \end{scope}
+    \end{scope}
+
+    \begin{scope}[shift={(0,-5)}] %e7
+        \node at (0,0) {$\tilde{E}_7$};
+        \begin{scope}[every node/.style={circle, fill=black, draw, thick, minimum size = 6pt, inner sep=0pt}]
+            \node (1) at (1,0) {};
+            \node (2) at (2,0) {};
+            \node (3) at (3,0) {};
+            \node (4) at (4,0) {};
+            \node (4a) at (4,1) {};
+            \node (5) at (5,0) {};
+            \node (6) at (6,0) {};
+            \node (7) at (7,0) {};
+        \end{scope}
+        \begin{scope}[every edge/.style={draw,very thick}]
+            \path [-] (1) edge (2);
+            \path [-] (2) edge (3);
+            \path [-] (3) edge (4);
+            \path [-] (4) edge (4a);
+            \path [-] (4) edge (5);
+            \path [-] (4) edge (6);
+            \path [-] (6) edge (7);
+        \end{scope}
+    \end{scope}
+
+    \begin{scope}[shift={(0,-7)}] %e8
+        \node at (0,0) {$\tilde{E}_8$};
+        \begin{scope}[every node/.style={circle, fill=black, draw, thick, minimum size = 6pt, inner sep=0pt}]
+            \node (1) at (1,0) {};
+            \node (2) at (2,0) {};
+            \node (3) at (3,0) {};
+            \node (4) at (4,0) {};
+            \node (5) at (5,0) {};
+            \node (6) at (6,0) {};
+            \node (6a) at (6,1) {};
+            \node (7) at (7,0) {};
+            \node (8) at (8,0) {};
+        \end{scope}
+        \begin{scope}[every edge/.style={draw,very thick}]
+            \path [-] (1) edge (2);
+            \path [-] (2) edge (3);
+            \path [-] (3) edge (4);
+            \path [-] (4) edge (5);
+            \path [-] (5) edge (6);
+            \path [-] (6) edge (7);
+            \path [-] (6) edge (6a);
+            \path [-] (7) edge (8);
+        \end{scope}
+    \end{scope}
+
+    \begin{scope}[shift={(10,-5)}] %f4
+        \node at (0,0) {$\tilde{F}_4$};
+        \begin{scope}[every node/.style={circle, fill=black, draw, thick, minimum size = 6pt, inner sep=0pt}]
+            \node (1) at (1,0) {};
+            \node (2) at (2,0) {};
+            \node (3) at (3,0) {};
+            \node (4) at (4,0) {};
+            \node (5) at (5,0) {};
+        \end{scope}
+        \begin{scope}[every edge/.style={draw,very thick}]
+            \path [-] (1) edge (2);
+            \path [-] (2) edge (3);
+            \path [-] (3) edge (4);
+            \path [-] (4) edge (5);
+            \node at (2.5,0.3) {$4$};
+        \end{scope}
+    \end{scope}
+
+    \begin{scope}[shift={(10,-6)}] %g2
+        \node at (0,0) {$\tilde{G}_2$};
+        \begin{scope}[every node/.style={circle, fill=black, draw, thick, minimum size = 6pt, inner sep=0pt}]
+            \node (1) at (1,0) {};
+            \node (2) at (2,0) {};
+            \node (3) at (3,0) {};
+        \end{scope}
+        \begin{scope}[every edge/.style={draw,very thick}]
+            \path [-] (1) edge (2);
+            \path [-] (2) edge (3);
+            \node at (1.5,0.3) {$6$};
+        \end{scope}
+    \end{scope}
+
+\end{tikzpicture}
+\caption{Positive semidefinite Coxeter diagrams}
+\label{fig:possemidef}
+\end{figure}
+
+Plus two helper diagrams which are neither:
+
+\begin{figure}[H]
+\begin{tikzpicture}[scale = 0.8]
+
+    \begin{scope}[shift={(0,0)}] %A1
+        \node at (0,0) {$Z_4$};
+        \begin{scope}[every node/.style={circle, fill=black, draw, thick, minimum size = 6pt, inner sep=0pt}]
+            \node (1) at (1,0) {};
+            \node (2) at (2,0) {};
+            \node (3) at (3,0) {};
+            \node (4) at (4,0) {};
+        \end{scope}
+        \begin{scope}[every edge/.style={draw,very thick}]
+            \path [-] (1) edge (2);
+            \path [-] (2) edge (3);
+            \path [-] (3) edge (4);
+            \node at (2.5,0.3) {$5$};
+        \end{scope}
+    \end{scope}
+
+    \begin{scope}[shift={(10,0)}] %A1
+        \node at (0,0) {$Z_5$};
+        \begin{scope}[every node/.style={circle, fill=black, draw, thick, minimum size = 6pt, inner sep=0pt}]
+            \node (1) at (1,0) {};
+            \node (2) at (2,0) {};
+            \node (3) at (3,0) {};
+            \node (4) at (4,0) {};
+            \node (5) at (5,0) {};
+        \end{scope}
+        \begin{scope}[every edge/.style={draw,very thick}]
+            \path [-] (1) edge (2);
+            \path [-] (2) edge (3);
+            \path [-] (3) edge (4);
+            \path [-] (4) edge (5);
+            \node at (1.5,0.3) {$5$};
+        \end{scope}
+    \end{scope}
+
+\end{tikzpicture}
+\caption{Helper Coxeter diagrams}
+\label{fig:helper}
+\end{figure}
+
+\begin{theorem}
+    the diagrams of Figure \ref{fig:posdef} are all the connected diagrams with positive definite quadratic form.
+    \begin{proof}
+        The proof goes by indentifying features present in the graphs of Figure \ref{fig:possemidef}, observing they cannot appear as subdiagrams of those with positive definite quadratic form: e.g. no cycles as in $\tilde{A}_n$ and all edges must be finite due to $\tilde{A}_1$. Full the full proof see \cite{Humphreys1990}.
+    \end{proof}
+\end{theorem}
+
+\begin{corollary}
+    The following graphs categorise all finite reflection groups.
+    \begin{proof}
+        We know it suffices to classify the reflections groups corresponding to connected Coxeter diagrams, all of which must have positive definited associated quadratic form, all of which we have found. The only remaining step is to find polytopes accepting these as their finite reflection groups, lots of these examples have been seen in the previous section, and in fact every diagram of Figure \ref{fig:posdef} do occur as that of a finite reflection group.
+    \end{proof}
+\end{corollary}
+
+This solution can seem somewhat unsatisfactory as there is no immediate reason as to \textbf{why} all of the finite Coxeter groups can be realised as reflection groups.
+
+\subsection{Geometric representation}
+
+For any finite Coxeter system $(W,S)$ consider the abstract real vector space $V$ with basis $\Phi$. We can define a quadratic form (and thus an inner product  $\abr{-,-}$) on $V$ in the same way as we did earlier. And for each generator $s\in S$ we can associate a reflection $\sigma_s:V\rightarrow V$ given natrually as $\sigma_s (v) = v-2\abr{\alpha_s,v}\alpha_s$. Through some similar calculations we can find the representation this induces on $W$ is faithful and acts orthogonally on $V$, the construction of the edges and vertices of a polytope demonstrated in the next section will thus show how a regular polytope can be realised from this abstract reflection group.
+
+\newpage
+
+Original finite diagram
 
 \begin{figure}[H]
 \resizebox{\textwidth}{!}{
