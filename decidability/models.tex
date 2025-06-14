@@ -1,6 +1,7 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
 
+The following definitions are taken from \cite{Marker2024}
 We fix our language $\cL=(e,\cdot)$ to be the language of groups.
 
 \begin{definition}
@@ -25,11 +26,11 @@ By drawing a truth table or otherwise, it suffices to define the satisfaction of
 
 \begin{definition}
     Let $\phi$ be a formula with free variables $x_1,\dots,x_n$. We inductively define a group $G\models \phi$ as follows. \begin{enumerate}
-        \item If $\phi(\overline x)$ is $t_1(\overline x)=t_2(\overline x)$, then $G\models \phi$ if $t_1$ and $t_2$ are exactly the same term.
+        \item If $\phi(\overline x)$ is $t_1(\overline x)=t_2(\overline x)$, then $G\models \phi$ if $t_1$ and $t_2$ are the same element of $G$.
         \item If $\phi(\overline x)$ is $\neg \psi(\overline x)$, then $G\models \phi(\overline x)$ if $G \nvDash \psi(\overline x)$.
         \item If $\phi(\overline x)$ is $\psi_1(\overline x) \wedge \psi_2(\overline x)$, then $G\models \phi(\overline x)$ if $G\models \psi_1(\overline x)$ and $G\models \psi_2(\overline x)$.
-        \item If $\phi(\overline x)$ is $\forall y\psi(\overline x,y)$, then $G\models \phi(\overline x)$ if for all $a \in G$  $G\models \psi(\overline x, a)$.
-        \item If $\phi(\overline x)$ is $\exists y\psi(\overline x,y)$, then $G\models \phi(\overline x)$ if there is $a \in G$  $G\models \psi(\overline x, a)$.
+        \item If $\phi(\overline x)$ is $\forall y \; \psi(\overline x,y)$, then $G\models \phi(\overline x)$ if for all $a \in G$  $G\models \psi(\overline x, a)$.
+        \item If $\phi(\overline x)$ is $\exists y \; \psi(\overline x,y)$, then $G\models \phi(\overline x)$ if there is $a \in G$  $G\models \psi(\overline x, a)$.
     \end{enumerate}
 
     If $G\models \phi(\overline a)$ we say $\phi(\overline a)$ is true in $G$
@@ -77,7 +78,7 @@ We have infinitely many initial configuration of the register $R_1,R_2,\dots$, e
 We then can say a theory of $G$ is decidable if the set of true sentences in $G$. We can make "input of $\phi$" more precise using G\"odel's coding.
 
 \begin{theorem}
-    The theory of $\bZ$ in the language of $(+,0,1,<,\equiv_p)$ where $\equiv_p$ is the relation of "two integers are same modolu $p$" is complete, admits quantifier elimination hence decidable.
+    The theory of $\bZ$ in the language of $(+,0,1,<,\equiv_p)$ where $\equiv_p$ is the relation of "two integers are same modulo $p$" is complete, admits quantifier elimination hence decidable.
 \end{theorem}
 
 

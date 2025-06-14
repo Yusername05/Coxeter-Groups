@@ -7,14 +7,14 @@
 
 \usepackage{style/header}
 \usepackage{setspace}
-%\doublespacing % Add this if pages < 25
+%\doublespacing
 
 \newcommand{\reporttitle}{Reflection Groups}
-\newcommand{\reportauthorA}{Student name 1 (CID: -------------)}
-\newcommand{\reportauthorB}{Student name 2 (CID: -------------)}
+\newcommand{\reportauthorA}{Jialin Li (CID: 02209592)}
+\newcommand{\reportauthorB}{Yu Coughlin (CID: 02386349)}
 \newcommand{\reportauthorC}{Student name 3 (CID: -------------)}
 \newcommand{\reportauthorD}{Student name 4 (CID: -------------)}
-\newcommand{\reportauthorE}{Student name 5 (CID: -------------)}
+\newcommand{\reportauthorE}{Heng Wang (CID: 02395274)}
 \newcommand{\supervisor}{Alessio Corti}
 
 % To compile this file locally use Recipe: pdflatex -> bibtex -> pdflates * 2
@@ -39,10 +39,10 @@ should demonstrate that you are aware of what you are doing, and how it relates 
 highlight your individual contributions and any novel result: which of the calculations, theorems,
 examples, proofs, conjectures, codes etc. are your own? This is how you cite a reference in the bibliography\cite{Humphreys1990}. All of the commands and formatting are in ./style/header.sty
 
-\section{Polytopes}
+\section{Dihedral groups}
 \subfile{polytopes/polytopes.tex}
 
-\section{Classification of finite reflection groups}
+\section{Classification of finite reflection groups}\label{Classification}
 \subfile{classification/classification.tex}
 
 \section{Uniform polytopes}
@@ -55,7 +55,7 @@ examples, proofs, conjectures, codes etc. are your own? This is how you cite a r
 \subfile{decidability/decidability.tex}
 
 \appendix
-\section{Model Theory Preliminaries}
+\section{Model-Theoretic Preliminaries}\label{Model Theory}
 \subfile{decidability/models.tex}
 
 \bibliography{bibliography.bib}
