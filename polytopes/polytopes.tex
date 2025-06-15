@@ -121,7 +121,7 @@ b a b^{-1} = a^{-1},
 \]
 which is the defining relation for the dihedral group \( D_{2p} \):
 \[
-D_p = \langle a, b \mid a^p = e, b^2 = e, b a b = a^{-1} \rangle.
+D_{2p} = \langle a, b \mid a^p = e, b^2 = e, b a b = a^{-1} \rangle.
 \]
 \end{itemize}
 
@@ -152,7 +152,7 @@ The generators can be any two consecutive distinguished points on that line. Thi
     A polyhedron is regular if its faces are regular polygons, all with the same number of sides, and also each vertex belongs to the same number of edges.
 \end{definition}
 
-\begin{theorem}\cite{}
+\begin{theorem}\cite{liebeck2019concise}
 The only regular convex polyhedra are the five Platonic solids.\\
 \textbf{Proof}. Before writing the proof, we introduce some notations.\\
 $V$, the number of vertices;\\
@@ -168,7 +168,7 @@ and
 \begin{equation}\label{eqn_2}
 2E=rV
 \end{equation}
-(1) comes from counting the number of pairs (e,f) where e is an edge and f is a face and e lies on f; (2) comes from counting the number of pairs (v,e) where v is a vertex and v lies on e.\\
+(1) comes from counting the number of pairs $(e,f)$ where $e$ is an edge and $f$ is a face and $e$ lies on $f$; (2) comes from counting the number of pairs $(v,e)$ where $v$ is a vertex and $v$ lies on $e$.\\
 Substitute into Euler's formula, we get 
 \begin{equation}\label{eqn_3}
 \frac{1}{r}+\frac{1}{n}=\frac{1}{2}+\frac{1}{E}
@@ -184,7 +184,7 @@ If $r = 3$, (3) becomes
 \begin{equation}\label{eqn_5}
 \frac{1}{n}=\frac{1}{6}+\frac{1}{E}
 \end{equation}
-Similarly, n = 3,4 or 5 and E = 6,12 or 30, respectively.
+Similarly, $n = 3,4$ or $5$ and $E = 6,12$ or $30$, respectively.
 These parameters coincide with those in the table above.
 \hfill\(\Box\)
 \end{theorem}
@@ -338,7 +338,7 @@ A polyhedron and its dual have the same axes of symmetry, so they have the same 
 \draw[->] (0,0,0) -- (0,2,0) node[anchor=south east]{$y$};
 \draw[->] (0,0,0) -- (0,0,2) node[anchor=south]{$z$};
 
-\draw[->, thick, red] (0,0,0) -- (1,0,0) node[below right] {$\mathbf{u}=(1,0,0)$};
+\draw[->, thick, red] (0,0,0) -- (1,-1,0) node[below right] {$\mathbf{u}=(1,0,0)$};
 \draw[->, thick, blue] (0,0,0) -- (1,1,0) node[below right] {$\mathbf{v}=(1,1,0)$};
 \draw[->, thick, green!60!black] (0,0,0) -- (0,1,1) node[left] {$\mathbf{w}=(0,1,1)$};
 

@@ -25,19 +25,24 @@
 \end{titlepage}
 
 \begin{abstract}
-Type your abstract here. The abstract is a summary of the contents of the project. It should be brief but informative, and
-should avoid technicalities as far as possible.
+
 \end{abstract}
 
 \tableofcontents
 \clearpage
 
 \section{Introduction}
-The introduction should attempt to set your work in the context of other work done in the field. It
-should demonstrate that you are aware of what you are doing, and how it relates to other work
-(with references). It should also provide an overview of the contents of the project. You should
-highlight your individual contributions and any novel result: which of the calculations, theorems,
-examples, proofs, conjectures, codes etc. are your own? This is how you cite a reference in the bibliography\cite{Humphreys1990}. All of the commands and formatting are in ./style/header.sty
+In lectures, we have seen how to classify finitely generated abelian groups. A main objective of this report is to classify finite reflection groups.
+
+Recall that a reflection is a linear operator on $\mathbb{R}^n$ which sends some nonzero vector $\mathbf{u}$ to its negative while fixing pointwise the hyperplane $H_{\mathbf{u}}$ orthogonal to $\mathbf{u}$. With the usual inner product, the reader can check that $s_{\mathbf{u}}(\mathbf{v}) = \mathbf{v} - 2\frac{\mathbf{v} \cdot \mathbf{u}}{\mathbf{u} \cdot \mathbf{u}}\mathbf{u}$.
+
+We will start by looking at the lower-dimensional reflection groups and proceed to more general ones, introducing some related terminology and ideas along the way.
+Classification of reflection groups not only describes the symmetries of regular polytopes but also helps understand more complex algebraic structures. 
+
+
+
+
+We then focus on affine reflection groups. By relating them to finite reflection groups, we show more finiteness properties of them, which gives us a structural theorem on Euclidean reflection groups. From this theorem, we show this structure can be interpreted in Presburger arithmetic, hence deduce the decidability of Euclidean reflection groups. 
 
 \section{Dihedral groups}
 \subfile{polytopes/polytopes.tex}
