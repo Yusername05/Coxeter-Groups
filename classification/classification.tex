@@ -2,69 +2,69 @@
 \begin{document}
 We're now going to start examining the algebraic properties of general reflection groups. To do this we will be working in $V$, denoting $\bR^n$ equipped with the standard inner product, our fixed \textit{euclidean space}.
 
-\subsection{Affine reflections}
+\subsection{Affine reflections}\label{subsection:affine reflections}
 
-This subsection roughly follows \cite{Berger2009}. When considering reflections in $V$, we don't want to just consider those lying in $O(E)$, we are also interested in reflections across some hyperplane not lying throught the origin. To tackle this we first define some standard preliminaries:
+This subsection roughly follows \cite{Berger2009}. When considering reflections in $V$, we don't want to just consider those lying in $O(V)$, we are also interested in reflections across some hyperplane not lying through the origin. To tackle this we first define some standard preliminaries:
 
 \begin{definition}
-    A \textbf{reflection} in $E$ is a linear transformation $s\in O(E)$ (the orthogonal group of inner product preserving linear maps) with eigenvalues $\{-1,1\}$ with corresponding dimensions of eigenspaces:\[
+    A \textbf{reflection} in $V$ is a linear transformation $s\in O(V)$ (the orthogonal group of inner product preserving linear maps) with eigenvalues $\{-1,1\}$ with corresponding dimensions of eigenspaces:\[
         \dim{E_1} = n-1 \qquad \dim{E_{-1}} = 1
     \]
-    for linear maps in $O(E)$ this is equivalent to fixing some hyperplane (codimension $1$ subspace) and having determinant $-1$.
+    for linear maps in $O(V)$ this is equivalent to fixing some hyperplane (codimension $1$ subspace) and having determinant $-1$.
 \end{definition}
 
 \begin{definition}
-    The \textbf{group of general affine transformations} of $E$ is semidirect product of $GL(E)$ acting on $E$\[
-    GA(E) := E \rtimes GL(E)
-    \] where $E$ acts on itself by translation. $(v,T)\in GA(E)$ acts on $e\in E$ as $(v,T)\cdot e = v + T(e)$.
+    The \textbf{group of general affine transformations} of $V$ is semidirect product of $GL(V)$ acting on $V$\[
+    GA(V) := V \rtimes GL(V)
+    \] where $V$ acts on itself by translation. $(u,T)\in GA(V)$ acts on $v\in V$ as $(u,T)\cdot v = u + T(v)$.
 \end{definition}
 
 \begin{proposition}
     This is actually an action. Furthermore, the action is transitive.
     \begin{proof}
-        Take $(v,T), (u,S)\in GA(E)$ and $e\in E$. Showing this is an action is a direct calculation: \[
-        (v,T) \cdot \pr{(u,S) \cdot e} = (v,T)\cdot \pr{u + S(e)} = v + T(u) + TS(e) = (v+T(u),TS)\cdot e = \pr{(v,T)(u,S)}\cdot e\]
-        from the definition of the semidirect product. Suppose $(v,T)$ and $(u,S)$ act the same on $E$: as both $T$ and $S$ are linear the two affine transformations send $0$ to $v$ and $u$ respective, thus we have $v=u$; subtracting these equal translations and having equality means the two linear transformations must also be equal.
+        Take $(u,T), (w,S)\in GA(V)$ and $v\in V$. Showing this is an action is a direct calculation: \[
+        (u,T) \cdot \pr{(w,S) \cdot v} = (u,T)\cdot \pr{w + S(v)} = u + T(w) + TS(v) = (u+T(w),TS)\cdot v = \pr{(u,T)(w,S)}\cdot v\]
+        from the definition of the semidirect product. Suppose $(u,T)$ and $(w,S)$ act the same on $V$: as both $T$ and $S$ are linear the two affine transformations send $0$ to $u$ and $w$ respectively, thus we have $u=w$; subtracting these equal translations and having equality means the two linear transformations must also be equal.
     \end{proof}
 \end{proposition}
 
-We can now consider appropriate affine versions of linear groups, the most important for us will be the \textbf{affine orthogonal group} $AO(E)$, which can be equivalently viewed as the subgroup of $GA(E)$ consisting of isometries, or as $E\rtimes O(E)$. We need stricter criteria than just the linear component of our affine transformation be a reflection to suitably capture the notion of a reflection across an affine hyperplane.
+We can now consider appropriate affine versions of linear groups, the most important for us will be the \textbf{affine orthogonal group} $AO(V)$, which can be equivalently viewed as the subgroup of $GA(V)$ consisting of isometries, or as $V\rtimes O(V)$. We need stricter criteria than just the linear component of our affine transformation be a reflection to suitably capture the notion of a reflection across an affine hyperplane.
 
 \begin{proposition}
-    For a unit normal vector $\alpha$ and some $k\in \bR$, reflection across the affine hyperplane $(E,\alpha) = k$ corresponds to the affine transformation $(2k\alpha,s_\alpha)$, where $s_\alpha$ is the reflection along $\alpha$.\begin{proof}
-        Call the affine hyperplane $H$ and choose a $v\in E$. The vector orthogonal to $H$ that goes to $v$ has length $k-(v,\alpha)$ so reflecting across $H$ send $v$ to $v+2(k-(v,\alpha))\alpha = 2k\alpha + (v-2(v,\alpha)\alpha) = (2k\alpha, s_\alpha)\cdot v$.
+    For a unit normal vector $\alpha$ and some $k\in \bR$, reflection across the affine hyperplane $(V,\alpha) = k$ corresponds to the affine transformation $(2k\alpha,s_\alpha)$, where $s_\alpha$ is the reflection along $\alpha$.\begin{proof}
+        Call the affine hyperplane $H$ and choose a $v\in V$. The vector orthogonal to $H$ that goes to $v$ has length $k-(v,\alpha)$ so reflecting across $H$ send $v$ to $v+2(k-(v,\alpha))\alpha = 2k\alpha + (v-2(v,\alpha)\alpha) = (2k\alpha, s_\alpha)\cdot v$.
     \end{proof}
 \end{proposition}
 
-We call such affine transformations, \textbf{affine reflections}.
+We call such affine transformations \textbf{affine reflections}, and we can now talk about \textbf{affine reflection groups} as those generated by affine reflection in the same way we could for orthogonal reflections.
 
 \begin{lemma}
     For all affine hyperplanes $H$ and affine reflections $r$, the set $rH$ is also an affine hyperplane.
     \begin{proof}
-        Let $H$ be $\{v\in V \mid (v,\alpha)=k\}$ for some $\alpha\in E, k\in\bR$. As $r$ is bijective the set $rH$ is equal to $\{w\in V \mid (r^{-1}w,\alpha) = k\}$, by writing $r=(u,T)\in GA(E)$ this can be rewritten as $\{w\in V\mid (w,T^*(\alpha))=k-(u,\alpha)\}$, an affine hyperplane.
+        Let $H$ be $\{v\in V \mid (v,\alpha)=k\}$ for some $\alpha\in V, k\in\bR$. As $r$ is bijective the set $rH$ is equal to $\{w\in V \mid (r^{-1}w,\alpha) = k\}$, by writing $r=(u,T)\in GA(V)$ this can be rewritten as $\{w\in V\mid (w,T^*(\alpha))=k-(u,\alpha)\}$, an affine hyperplane.
     \end{proof}
 \end{lemma}
 
 \begin{lemma}
     An affine transformations $r=(u,T)$ that fixes some affine hyperplane and is an involution must be an affine reflection.
     \begin{proof}
-        As $r^2=\text{id}$, on $0$ we have $r^2(0)=u+T(u)=0$. So as $r^2=u+T(u)+A^2$ this means $A$ is also an involution so we can use the primary decomposition $E=E_1\oplus E_{-1}$ into the eigenspaces of $A$. Call the hyperplane $r$ fixes $H$, then for any $h=v_1+v_{-1}\in H$ (where $v_1,v_{-1}\in V_1,V_{-1}$ respectively) we have $r(v_1+v_{-1}) = u + T(v_1+v_{-1}) = u + v_1 - v_{-1} = v_1 + v_{-1}$ therefore $2v_{-1}=u$ so $\dim E_{-1}=1$ and $T$ is the reflection along $V_{-1}=\abr{v_{-1}}$, thus $r=\pr{2v_{-1},s_{v_{-1}}}$.
+        As $r^2=\text{id}$, on $0$ we have $r^2(0)=u+T(u)=0$. So as $r^2=u+T(u)+T^2$ this means $T$ is also an involution so we can use the primary decomposition $V=E_1\oplus E_{-1}$ into the eigenspaces of $T$. Call the hyperplane $r$ fixes $H$, then for any $h=v_1+v_{-1}\in H$ (where $v_1,v_{-1}\in V_1,V_{-1}$ respectively) we have $r(v_1+v_{-1}) = u + T(v_1+v_{-1}) = u + v_1 - v_{-1} = v_1 + v_{-1}$ therefore $2v_{-1}=u$ so $\dim E_{-1}=1$ and $T$ is the reflection along $V_{-1}=\abr{v_{-1}}$, thus $r=\pr{2v_{-1},s_{v_{-1}}}$.
     \end{proof}
 \end{lemma}
 
 \begin{proposition}
     For all affine reflections $r,s$ with $s$ reflecting across the affine hyperplane $H$, the affine transformation $rsr^{-1}$ is an affine reflection across $rH$.
     \begin{proof}
-        First, notice $\pr{rsr^{-1}}^2 = \text{id}$ as both $r$ and $s$ are involutions. Also, $rsr^{-1}(rH) = rH$ as $s$ fixes $H$.
+        First, notice $\pr{rsr^{-1}}^2 = \text{id}$ as both $r$ and $s$ are involutions. Also, $rsr^{-1}(rH) = rH$ as $s$ fixes $H$. By the previous lemma, and earlier described faithfulness of the action, this is sufficient. 
     \end{proof}
 \end{proposition}
 
 From now on, we will use the umbrella term \textit{reflection} to refer to both linear and affine reflecitons.
 
-\subsection{Reflection groups}
+\subsection{Reflection groups}\label{subsection:reflection groups}
 We are interested in groups generated by reflections in $E$, so throughout the next two sections fix a group $W\leq GA(E)$ which can be generated by reflections. This roughly follows \cite{Humphreys1990}
 
-We would like to consider the set of all hyperplanes $H$ such that there is some affine reflection $w\in W$ across $H$ this set will be referred to as $\cH$. For certain choices of generators for $W$ we may find $\cH$ is dense in $E$.
+We would like to consider the set of all hyperplanes $H$ such that there is some affine reflection $w\in W$ across $H$, this set will be referred to as $\cH$. For certain choices of generators for $W$ we may find $\cH$ is dense in $E$.
 
 \begin{example}
     Consider the set of hyperplanes pictured in red: 
@@ -153,7 +153,7 @@ This adds technicalities and looses the discrete geometric intuition we have for
 The set of unitvectors $\alpha \in E$ such that there exists some $H\in \cH$ with $\alpha$ normal to $\cH$ will be written $\Phi$. And without loss of generality we will assume $\Phi$ spans $E$ from here onwards.
 
 \begin{definition}
-    The connected components of $E\setminus \cH$ are called the \textbf{chambers} of $W$ in $E$.
+    The connected components of $E\setminus \cH$ are called the \textbf{chambers} of $W$ in $E$. We will sometimes call these fundamental domain
 \end{definition}
 
 The reflection groups we are interested in, those that appear as finite reflection groups of polytopes or lattices in whatever geometry we prefer, will have finitely many hyperplanes touching each chamber. Later on we will see this is equivalent to the group being finitely presented. A formula for the number of hyerplanes touching a chamber is given in Section \ref{Model Theory}
@@ -211,7 +211,7 @@ In the future, for the sake of readability, the $3$ labels will often be exclude
 
 The classification of finite reflection groups goes by proving all reflection groups are in fact Coxeter groups and then classifying all the finite Coxeter groups.
 
-\subsection{Coxeter presentation}
+\subsection{Coxeter presentation}\label{subsection:coxeter presentation}
 
 We have shown the action of $W$ on the set of chambers is transitive, but we need a stronger notion to prove these groups are Coxeter.
 
@@ -319,7 +319,7 @@ We can now prove two key combinatorial properties of the reflection group, and u
     \end{proof}
 \end{theorem}
 
-Informally, we can see that these weak forms of the deletion and exchange conditions are actually direct consequences of the Coxeter relations, this is geometrically motivated in subsection \ref{geom:rep}. The formal proof that the exchange condition (which implies the deletion condition) is a property of Coxeter groups rigourously defined as quotients of a free group is given in Section \ref{word}. We are electing to use this informal proof at this point in the report to continue the geometric nature of this section, thus the following proof that reflection groups satisfy the Coxeter presentation is the same somewhat informal argument as given in \cite{Humphreys1990}.
+Informally, we can see that these weak forms of the deletion and exchange conditions are actually direct consequences of the Coxeter relations, this is geometrically motivated in subsection \ref{subsection:geometric representation}. The formal proof that the exchange condition (which implies the deletion condition) is a property of Coxeter groups rigourously defined as quotients of a free group is given in Section \ref{word}. We are electing to use this informal proof at this point in the report to continue the geometric nature of this section, thus the following proof that reflection groups satisfy the Coxeter presentation is the same somewhat informal argument as given in \cite{Humphreys1990}.
 
 \begin{theorem}
     Any finite reflection group satisfies the Coxeter presentation.
@@ -332,7 +332,7 @@ Informally, we can see that these weak forms of the deletion and exchange condit
 
 Note that in this proof we tacitly expect $r\geq 4$, luckily any length $2$ relation is just an equality which by assumption do not occur.
 
-\subsection{Classification}
+\subsection{Classification}\label{subsection:classification}
 
 \begin{definition}
     To a Coxeter system $(W,S)$, with $n=|S|$, we can associate a real symmetric $n\times n$ matrix $A$, by setting $a_{ij}:= -\cos(\pi/m_{ij})$. The quadratic form $Q(v) = v^\top A v$ on $E$ is called the \textbf{associated quadratic form} of the Coxeter system.
@@ -891,13 +891,13 @@ Plus two helper diagrams which are neither:
 \begin{corollary}
     The following graphs categorise all finite reflection groups.
     \begin{proof}
-        We know it suffices to classify the reflections groups corresponding to connected Coxeter diagrams, all of which must have positive definited associated quadratic form, all of which we have found. The only remaining step is to find polytopes admitting these Coxeter groups as their reflection groups, lots of these examples have been seen in the previous section, and in fact every diagram of Figure \ref{fig:posdef} does occur as a finite reflection.
+        We know it suffices to classify the reflections groups corresponding to connected Coxeter diagrams, all of which must have positive definited associated quadratic form, all of which we have found. The only remaining step is to find polytopes admitting these Coxeter groups as their reflection groups, lots of these examples have been seen in the previous section, and in fact every diagram of Figure \ref{fig:posdef} does occur as a finite reflection group of a polytope. However, as we will see in the next section, such polytopes aren't necessarily regular.
     \end{proof}
 \end{corollary}
 
 This solution can seem somewhat unsatisfactory as there is no immediate reason as to \textbf{why} all of the finite Coxeter groups can be realised as reflection groups.
 
-\subsection{Geometric representation}\label{geom:rep}
+\subsection{Geometric representation}\label{subsection:geometric representation}
 
 For any finite Coxeter system $(W,S)$ consider the abstract real vector space $V$ with basis $\Phi$. We can define a quadratic form (and thus an inner product  $\abr{-,-}$) on $V$ in the same way as we did earlier. And for each generator $s\in S$ we can associate a reflection $\sigma_s:V\rightarrow V$ given natrually as $\sigma_s (v) = v-2\abr{\alpha_s,v}\alpha_s$. Through some similar calculations we can find the representation this induces on $W$ is faithful and acts orthogonally on $V$, the construction of the edges and vertices of a polytope demonstrated in the next section will thus show how a regular polytope can be realised from this abstract reflection group.
 

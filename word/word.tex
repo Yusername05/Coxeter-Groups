@@ -1,172 +1,271 @@
 \documentclass[../main.tex]{subfiles}
-\usepackage{graphicx} % Required for inserting images
-\usepackage{amsfonts} % For \mathbb
-\usepackage[a4paper, left=1in, right=1in, top=1in, bottom=1in]{geometry}
-\usepackage{amsmath, amsthm}
 \begin{document}
-
 \setcounter{subsection}{-1}
 \subsection{Abstract}
 
-Recalling the word problem for a presentation $\langle S\mid R\rangle$ of a group $G$, we hope to find an algorithm to reduce any word in $W$ into a reduced word. In this paper, we totally solved this problem for Coxeter groups, and actually for all system with exchange condition, which is called Tit's theorem.
 
-\noindent The proof is divided into several steps:
+This is an example of referencing: \cite{Bourbaki}\cite{Davis}
 
-1.Every Coxeter group satisfies the exchange condition.
+The word problem for a group presentation \( \langle S \mid R \rangle \) involves finding an algorithm to reduce any word in the group \( W \) into a reduced word. In this paper, we solve this problem for Coxeter groups, and, more generally, for all systems satisfying the exchange condition, which is encapsulated in Tits' Theorem.
 
-2.For a system with exchange condition, when do two reduced words represent the same element.
+The proof of this result is divided into several steps:
 
-3.How to reduce a word in a system with exchange condition.
+\begin{itemize} 
+    \item First, we show that every Coxeter group satisfies the exchange condition.
+    \item Next, we examine when two reduced words represent the same element in the group.
+    \item Lastly, we discuss how to reduce a word in a system satisfying the exchange condition.
+\end{itemize}
 
-The first part of the proof is the hardest, and we focus on the most.
-
-We will talk more on the exchange condition as the fourth part, even though part 1 is enough to prove Tit's Theorem, exchange condition show deep insight of Coxeter Groups.
+The hardest part of the proof is the first one, and we will focus on this in more detail.
 
 \subsection{Exchange Condition}
-\textbf{Definition 1.1} A system is a tuple $(W,S)$, where $W$ is a group and $S$ is a set of generators of $G$, such that $S=S^{-1}$ and $1\notin S$.
+\textbf{Definition 6.1.1.} A system is a tuple \( (W, S) \), where \( W \) is a group and \( S \) is a set of generators for \( G \), such that \( S = S^{-1} \) and \( 1 \notin S \). 
 
 \vspace{\baselineskip}
-\noindent \textbf{Definition 1.2} For $w \in W$, the sequence $\mathbf{s}=(s_1,...,s_q)$,where $s_i \in S$ for all $i\in \mathbb{N}$, is called a reduced representation of $w$ if and only if $w=s_1s_2...s_q$ $(*)$ and $q$ is the smallest among all such sequences satisfies $(*)$. We define $l(w)=q$ and call it the length of $w$.
+\noindent \textbf{Definition 6.1.2.} For \( w \in W \), the sequence \( \mathbf{s} = (s_1, \dots, s_q) \), where \( s_i \in S \) for all \( i \in \mathbb{N} \), is called a **reduced representation** of \( w \) if and only if \( w = s_1 s_2 \dots s_q \) and \( q \) is the smallest such number satisfying this condition. We define \( l(w) = q \), which is called the **length** of \( w \).
 
 \vspace{\baselineskip}
-\noindent \textbf{Proposition 1.3} For $w,w'\in W$, we have the following facts:
+\noindent \textbf{Proposition 6.1.3.} For \( w, w' \in W \), we have the following facts:
 
-\indent (1) $l(ww')\le l(w)+l(w')$
+\begin{itemize}
+    \item (1) \( l(ww') \le l(w) + l(w') \)
+    \item (2) \( l(w^{-1}) = l(w) \)
+    \item (3) \( |l(w) - l(w')| \le l(ww'^{-1}) \)
+\end{itemize}
 
-\indent (2) $l(w^{-1}) = l(w)$
-
-\indent (3) $|l(w)-l(w')| \le l(ww'^{-1})$
-
-\noindent \textbf{Proof:} (1) and (2) are trivial. From (1), we see $l(w) \le l(ww'^{-1})+l(w')$ and $l(w') \le l(w'w^{-1})+l(w)$. From (2), we see $l(w'w^{-1})=l(ww'^{-1})$. Putting these together gives us (3). \qed
-
-\vspace{\baselineskip}
-\noindent \textbf{Definition 1.4} If a system $(W,S)$ satisfies the following conditions:
-
-\indent (1)Every element in $S$ has order 2.
-
-\indent (2) Say $m(s,t)$ is the order of $st$, and define $I = \{ (s,t) \mid s,t \in S,\ m(s,t) < \infty \}$, then $\langle S \mid (st)^{m(s,t)}=1,(s,t)\in I \rangle$ is a presentation of $W$.
-
-Then we say $(W,S)$ is a Coxeter System and W is a Coxeter group.
+\noindent \textbf{Proof:} (1) and (2) are straightforward. From (1), we see \( l(w) \le l(ww'^{-1}) + l(w') \) and \( l(w') \le l(w'w^{-1}) + l(w) \). From (2), we know \( l(w'w^{-1}) = l(ww'^{-1}) \). Combining these, we obtain (3). \qed
 
 \vspace{\baselineskip}
-\noindent \textbf{Remark 1.5} A Coxeter System $(W,S)$ satisfies the following universal property: For any group $G$ and map $\psi:S \rightarrow G$ such that $\psi(st) ^{m(st)}=e_G$,$\forall(s,t) \in I$, there exist an unique $\phi \in Hom(W,G)$ such that $\psi=\phi \circ l$. Where $I$ is defined as in Definition 1.4, and $l$ is the natural inclusion from $S$ to $W$. Note that this is just the composition of universal properties of free groups and quotient groups.
+\noindent \textbf{Definition 6.1.4.} If a system \( (W, S) \) satisfies the following conditions:
+
+\begin{itemize}
+    \item (1) Every element in \( S \) has order 2.
+    \item (2) Let \( m(s, t) \) denote the order of \( st \), and define \( I = \{ (s, t) \mid s, t \in S, m(s, t) < \infty \} \), then the presentation \( \langle S \mid (st)^{m(s,t)} = 1, (s,t) \in I \rangle \) describes \( W \).
+\end{itemize}
+
+Then we say that \( (W, S) \) is a Coxeter System, and \( W \) is a Coxeter group.
 
 \vspace{\baselineskip}
-\noindent \textbf{Example 1.6} By universal property of Coxeter System, the map $s \mapsto -1$, $\forall s \in S$ extends to a homomorphism $\epsilon :W \rightarrow \{-1,1\}$ such that $\epsilon(w)=(-1)^{l(w)}$. We call $\epsilon(w)$ the sign of $w$. 
+\noindent \textbf{Remark 6.1.5.} A Coxeter system \( (W, S) \) satisfies the following universal property: For any group \( G \) and map \( \psi: S \to G \) such that \( \psi(st)^{m(st)} = e_G \) for all \( (s, t) \in I \), there exists a unique homomorphism \( \phi \in \text{Hom}(W, G) \) such that \( \psi = \phi \circ l \), where \( l \) is the natural inclusion from \( S \) to \( W \). This is simply the composition of the universal properties of free groups and quotient groups.
 
 \vspace{\baselineskip}
-We want to find some invariant among representations of the same word, hence make the following definition.
+\noindent \textbf{Example 6.1.6.} By the universal property of Coxeter systems, the map \( s \mapsto -1 \) for all \( s \in S \) extends to a homomorphism \( \epsilon: W \to \{-1, 1\} \), such that \( \epsilon(w) = (-1)^{l(w)} \). We call \( \epsilon(w) \) the sign of \( w \).
 
 \vspace{\baselineskip}
-\noindent \textbf{Definition 1.7} For Coxeter System $(W,S)$, say $T$ the union of conjugacy classes of all $s \in S$. For sequence $\mathbf{s}=(s_1,...,s_q)$, where $s_i \in S,\forall i$. Define $\Phi(\mathbf{s})=(t_1,...,t_q)$ such that $t_j=(s_1...s_{j-1})s_j(s_1...s_{j-1})^{-1}$. For $t\in T$, define $n(\mathbf{s},t):= \# \{1\le j \le q \mid t_j=t\}$. Finally, define $R=\{\pm 1\} \times T$.
-
-\noindent \textbf{Remark} Note that we have $s_1...s_j=t_j...t_1$.
+Now we want to find an invariant among different representations of the same word. For this, we define the following:
 
 \vspace{\baselineskip}
-\noindent \textbf{Lemma 1.8}  For Coxeter System $(W,S)$, we have the following facts:
+\noindent \textbf{Definition 6.1.7.} For a Coxeter system \( (W, S) \), let \( T \) denote the union of the conjugacy classes of all elements in \( S \). For a sequence \( \mathbf{s} = (s_1, \dots, s_q) \), where \( s_i \in S \) for all \( i \), define \( \Phi(\mathbf{s}) = (t_1, \dots, t_q) \), where \( t_j = (s_1 \dots s_{j-1}) s_j (s_1 \dots s_{j-1})^{-1} \). For \( t \in T \), define \( n(\mathbf{s}, t) := \# \{ 1 \le j \le q \mid t_j = t \} \). Finally, define \( R = \{\pm 1\} \times T \).
 
-\indent (1) For $w \in W$ and $t \in T$, $\forall \mathbf{s}=(s_1,...,s_q)$ such that $w=s_1...s_q$, $(-1)^{n(\mathbf{s},t)}$ has the same value. We call this value $\eta(w,t)$.
+\noindent \textbf{Remark} Note that we have \( s_1 \dots s_j = t_j \dots t_1 \).
 
-\indent (2) For $w \in W$, consider the map $U_w:R \rightarrow R$ defined as $U_w(\epsilon,t)=(\epsilon \eta (w,t),wtw^{-1})$, then $w \mapsto U_w$ is a homomorphism from $W$ to the permutation group of $R$. 
+\vspace{\baselineskip}
+
+\noindent \textbf{Lemma 6.1.8.} For a Coxeter System $(W, S)$, we have the following facts:
+
+\begin{enumerate}
+    \item For $w \in W$ and $t \in T$, for every sequence $\mathbf{s} = (s_1, \dots, s_q)$ such that $w = s_1 \dots s_q$, the value $(-1)^{n(\mathbf{s}, t)}$ is constant. We call this value $\eta(w, t)$.
+    \item For $w \in W$, consider the map $U_w : R \rightarrow R$ defined as
+    \[
+    U_w(\epsilon, t) = (\epsilon \eta(w, t), w t w^{-1}),
+    \]
+    then the map $w \mapsto U_w$ is a homomorphism from $W$ to the permutation group of $R$.
+\end{enumerate}
 
 \vspace{0.5\baselineskip}
-\noindent \textbf{Proof:} For $s \in S$, we define $U_s:R \rightarrow R$ such that $(\epsilon,t) \mapsto (\epsilon(-1)^{\delta(\mathbf{s},t)},sts^{-1})$, where $\delta_{s,t}$ is the Kronecker Symbol. For sequence $\mathbf{s}=(s_1,...,s_q)$ in $S$, say $w=s_q...s_1$, $U_s=U_{s_q}\circ...\circ U_{s_1}$.
 
- We prove $U_{\mathbf{s}}(\epsilon,t)=(\epsilon(-1)^{n(\mathbf{s},t)},wtw^{-1})$ by induction. $(*)$
+\noindent \textbf{Proof:} For $s \in S$, define $U_s : R \rightarrow R$ by
+\[
+U_s(\epsilon, t) = (\epsilon (-1)^{\delta(\mathbf{s}, t)}, s t s^{-1}),
+\]
+where $\delta_{s,t}$ is the Kronecker delta. For a sequence $\mathbf{s} = (s_1, \dots, s_q)$ in $S$, let $w = s_q \dots s_1$, then
+\[
+U_s = U_{s_q} \circ \dots \circ U_{s_1}.
+\]
 
- In case $q=0$ or $1$, the proof is trivial. For $q >1$, by induction hypothesis, say $\mathbf{s'}=(s_1,...,s_{q-1})$,$w'=s_{q-1}...s_1$, then $U_{\mathbf{s'}}=U_{s_q}(\epsilon(-1)^{n(\mathbf{s'},t)},w'tw^{-1})$. Hence it only remains to prove that $n(\mathbf{s},t)=\delta_{s_q,w'tw^{-1}}+n(\mathbf{s'},t)$. Notice that $\Phi(\mathbf{s})=(\Phi(\mathbf{s'}),w'^{-1}s_qw')$, so the proof is trivial.
+We prove that $U_{\mathbf{s}}(\epsilon, t) = (\epsilon (-1)^{n(\mathbf{s}, t)}, w t w^{-1})$ by induction. 
 
- We now prove the fact that $s\mapsto U_s$ can be extended to a homomorphism from $W$. By the universal property of Coxeter System, it saffice to prove that $\forall s,s' \in S$ such that $m(s,s') < \infty$, $(U_s \circ U_{s'})^{m(s,s')}=1$. Define $\mathbf{s}=(s_1,...,s_{2m(s,s')})$ such that $s_i:=s$ for odd $i$ and $s_i:=s'$ for even $i$, so it saffice to prove $U_{\mathbf{s}}=Id$. Notice that here we have $t_j=(ss')^{j-1}s$, so $t_i \ne t_j$ for all $1\le i<j \le m(s,s')$ and $t_i=t_{i+m(s,s')}$. Hence, for $t \in T$, $n(\mathbf{s},t)=0$ or $2$. Applying the result in the previous paragraph, we see $U_{\mathbf{s}}=Id$. 
+\[
+(*) \quad \text{In the case when } q = 0 \text{ or } 1, \text{ the proof is trivial.}
+\]
 
- Now we see $w\mapsto U_w$ is a homomorphism from $W$. Specifically, $U_w$ doesn't depend on the representation chosen for $w$. So from $(*)$, we see $n(\mathbf{s},t)$ is invariant among different choices of representations. This gives us $(1)$. $(2)$ follows easily. \qed
+For $q > 1$, assume the induction hypothesis holds for $\mathbf{s'} = (s_1, \dots, s_{q-1})$ with $w' = s_{q-1} \dots s_1$. Then
+\[
+U_{\mathbf{s'}} = U_{s_q} (\epsilon (-1)^{n(\mathbf{s'}, t)}, w' t w'^{-1}).
+\]
+Thus, it remains to prove that
+\[
+n(\mathbf{s}, t) = \delta_{s_q, w' t w'^{-1}} + n(\mathbf{s'}, t).
+\]
+Notice that $\Phi(\mathbf{s}) = (\Phi(\mathbf{s'}), w'^{-1} s_q w')$, so the proof is trivial.
+
+We now prove that the map $s \mapsto U_s$ can be extended to a homomorphism from $W$. By the universal property of Coxeter systems, it suffices to prove that for all $s, s' \in S$ such that $m(s, s') < \infty$, we have
+\[
+(U_s \circ U_{s'})^{m(s, s')} = 1.
+\]
+Define $\mathbf{s} = (s_1, \dots, s_{2m(s, s')})$ such that $s_i := s$ for odd $i$ and $s_i := s'$ for even $i$. It suffices to prove that
+\[
+U_{\mathbf{s}} = \text{Id}.
+\]
+Notice that here we have $t_j = (ss')^{j-1} s$, so $t_i \neq t_j$ for all $1 \leq i < j \leq m(s, s')$ and $t_i = t_{i + m(s, s')}$.
+
+Hence, for $t \in T$, $n(\mathbf{s}, t)$ is either 0 or 2. Applying the result in the previous paragraph, we see that $U_{\mathbf{s}} = \text{Id}$.
+
+Therefore, the map $w \mapsto U_w$ is a homomorphism from $W$. Specifically, $U_w$ does not depend on the representation chosen for $w$. From $(*)$, we conclude that $n(\mathbf{s}, t)$ is invariant across different representations. This gives us statement (1). Statement (2) follows easily. \qed
 
 \vspace{\baselineskip}
-\noindent \textbf{Theorem 1.9} For Coxeter System $(W,S)$, consider sequence $\mathbf{s}=(s_1,...,s_q)$, $\Phi(\mathbf{s})=(t_1,...,t_q)$, $w=s_1...s_q$. Then $\mathbf{s}$ is an reduced representation of $w$ if and only if $t_i \ne t_j$ for all $i \ne j$. Define $T_w:=\{t \in T \mid \eta(w,t)=-1\}$, then in case $s$ is a reduced representation of $w$, $T_w=\{t_1,...,t_q\}$ and $|T_w|=l(w)$.
 
-\vspace{0.5\baselineskip} 
-\noindent \textbf{Proof:} $\forall t \in T_w$,$n(w,t)\ne0$. By definition of $n(w,t)$, we deduce $\forall t \in T_w$,$t\in\{t_1,...,t_q\}$. Moreover, as $\eta(w,t)$ is independent of the choice of representation of $w$, $T_w$ only depends on $w$. Hence $|T_w|\le l(w)$. In case $t_i \ne t_j$ for all $i\ne j$, $n(s,t)=0$ or $1$, and hence $T_w=\{t_1,...,t_q\}$. As $q=|T_w| \le l(w)$, so $\mathbf{s}$ is a reduced representation of $w$. 
-
-Conversely, if there exist $i \ne j$ such that $t_i=t_j$, WLOG say $i < j$. Consider $u=s_{i+1}...s_{j-1}$, then $s_i=us_ju^{-1}$. Hence we have $s_1...s_q=s_1...s_{i-1}(us_ju^{-1})us_js_{j+1}...s_q=s_1...s_{i-1}us_js_js_{j+1}...s_q=s_1...s_{i-1}s_{i+1}...s_{j-1}s_{j+1}...s_q$. So $\mathbf{s}$ is not reduced.\qed
-
-\vspace{\baselineskip}
-Note that now we have a necessary and sufficient condition to check whether a word is reduced or not. We want to improve this result and get an algorithm of reducing words. 
-
-\vspace{\baselineskip}
-\noindent \textbf{Definition 1.10} For a system $(W,S)$, if it satisfies: $\forall w \in W,s\in S$, if $l(sw) \le l(w)$, then for any reduced representation $\mathbf{s}=(s_1,...,s_q)$, exist $1\le j \le q$ such that $ss_1...s_{j-1}=s_1...s_j$. Then we say $(W,S)$ satisfies the exchange condition.
-
-\vspace{\baselineskip}
-\noindent \textbf{Theorem 1.11} If $(W,S)$ is a Coxeter System, then it satisfies the exchange condition. 
+\noindent \textbf{Theorem 6.1.9.} For a Coxeter System $(W,S)$, consider a sequence $\mathbf{s} = (s_1, \dots, s_q)$, $\Phi(\mathbf{s}) = (t_1, \dots, t_q)$, and $w = s_1 \dots s_q$. Then $\mathbf{s}$ is a reduced representation of $w$ if and only if $t_i \neq t_j$ for all $i \neq j$. Define
+\[
+T_w := \{ t \in T \mid \eta(w, t) = -1 \},
+\]
+then in the case that $\mathbf{s}$ is a reduced representation of $w$, we have $T_w = \{ t_1, \dots, t_q \}$ and $|T_w| = l(w)$.
 
 \vspace{0.5\baselineskip}
-\noindent \textbf{Proof:} Consider $w\in W,s \in S$ such that $l(sw) \le l(w)$. For any reduced representation $\mathbf{s}=(s_1,...,s_q)$ of $w$, consider $w':=sw$. By Example 1.6, we have $l(w') \equiv l(w)+1\pmod{2}$. Proposition 1.3(3) gives that $|l(w)-l(w')|\le1$, so $l(w')=l(w)-1$. Now pick $(s_1',...,s'_{l(w)-1})$ as a reduced representation of $w'$, then $\mathbf{s'}=(s,s_1',...,s'_{p-1})$ is a reduced representation of $w$. Take $\Phi(\mathbf{s'})=(t_1',...,t'_p)$, then $t_1'=s$ by definition. However Theorem 1.9 shows that $t'_i \ne t'_j$ if $i\ne j$, so $n(\mathbf{s'},s)=1$. By Lemma 1.8, $n(\mathbf{s'},s) \equiv n(\mathbf{s},s)\pmod{2}$, so $n(\mathbf{s},s) \ne 0$. Hence there exist $j$ such that $s=t_j$, where $t_j$ is an element in $\Phi(\mathbf{s})$. By definition of $t_j$, $ss_1...s_{j-1}=s_1...s_j$, the claim is proved.\qed
+
+\noindent \textbf{Proof:} For all $t \in T_w$, we have $n(w, t) \neq 0$. By the definition of $n(w, t)$, we deduce that for all $t \in T_w$, $t \in \{ t_1, \dots, t_q \}$. Moreover, since $\eta(w, t)$ is independent of the choice of representation of $w$, the set $T_w$ depends only on $w$. Hence, $|T_w| \leq l(w)$.
+
+In the case where $t_i \neq t_j$ for all $i \neq j$, we have $n(s, t) = 0$ or $1$, and thus $T_w = \{ t_1, \dots, t_q \}$. Since $q = |T_w| \leq l(w)$, it follows that $\mathbf{s}$ is a reduced representation of $w$.
+
+Conversely, if there exist $i \neq j$ such that $t_i = t_j$, without loss of generality, assume $i < j$. Consider the subsequence $u = s_{i+1} \dots s_{j-1}$, then we have
+\[
+s_i = u s_j u^{-1}.
+\]
+Hence, we have
+\[
+s_1 \dots s_q = s_1 \dots s_{i-1} (u s_j u^{-1}) u s_j s_{j+1} \dots s_q = s_1 \dots s_{i-1} u s_j s_j s_{j+1} \dots s_q = s_1 \dots s_{i-1} s_{i+1} \dots s_{j-1} s_{j+1} \dots s_q.
+\]
+Thus, $\mathbf{s}$ is not a reduced representation. \qed
 
 \vspace{\baselineskip}
-Theorem 1.11 is all we need to prove the Tit's theorem. But we can actually say more on exchange condition, and deduce conversely that any system such that $\forall s\in S$, $s$ has order 2 and satisfy exchange condition is a Coxeter System. We will talk more on it in part 4.
+
+\noindent
+Note that now we have a necessary and sufficient condition to check whether a word is reduced or not. We want to improve this result and develop an algorithm for reducing words. 
+
+\vspace{\baselineskip}
+
+\noindent \textbf{Definition 6.1.10.} For a system $(W, S)$, if it satisfies: for all $w \in W$ and $s \in S$, if $l(sw) \leq l(w)$, then for any reduced representation $\mathbf{s} = (s_1, \dots, s_q)$, there exists $1 \leq j \leq q$ such that $s s_1 \dots s_{j-1} = s_1 \dots s_j$, then we say $(W, S)$ satisfies the \textit{exchange condition}.
+
+\vspace{\baselineskip}
+
+\noindent \textbf{Theorem 6.1.11.} If $(W, S)$ is a Coxeter System, then it satisfies the exchange condition.
+
+\vspace{0.5\baselineskip}
+
+\noindent \textbf{Proof:} Consider $w \in W$ and $s \in S$ such that $l(sw) \leq l(w)$. For any reduced representation $\mathbf{s} = (s_1, \dots, s_q)$ of $w$, consider $w' := sw$. By Example 6.1.6, we have
+\[
+l(w') \equiv l(w) + 1 \pmod{2}.
+\]
+Proposition 6.1.3(3) gives that $|l(w) - l(w')| \leq 1$, so we conclude that $l(w') = l(w) - 1$. Now, pick $(s_1', \dots, s'_{l(w)-1})$ as a reduced representation of $w'$, then $\mathbf{s'} = (s, s_1', \dots, s'_{p-1})$ is a reduced representation of $w$. 
+
+Take $\Phi(\mathbf{s'}) = (t_1', \dots, t'_p)$, then by definition, we have $t_1' = s$. However, Theorem 6.1.9 shows that $t'_i \neq t'_j$ if $i \neq j$, so we have
+\[
+n(\mathbf{s'}, s) = 1.
+\]
+By Lemma 6.1.8, we know that
+\[
+n(\mathbf{s'}, s) \equiv n(\mathbf{s}, s) \pmod{2},
+\]
+so $n(\mathbf{s}, s) \neq 0$. Hence, there exists an index $j$ such that $s = t_j$, where $t_j$ is an element in $\Phi(\mathbf{s})$. By the definition of $t_j$, we have
+\[
+s s_1 \dots s_{j-1} = s_1 \dots s_j.
+\]
+Thus, the claim is proved. \qed
+
+\vspace{\baselineskip}
 
 \subsection{M-operations}
-\noindent \textbf{Definition 2.1} Consider $(W,S)$ a system, the sequence $\mathbf{s}=(s_1,...,s_q)$, where $s_i \in S,\forall i$ is called a word in $S$ and $w:=s_1...s_q$ is called the element in $W$ expressed by $\mathbf{s}$. An elementary M-operation on a word in $\mathbf{s}$ is one of the following two types of operations:
 
-(MI) Delete a subword of form $(s,s)$ from $\mathbf{s}$.
+\noindent \textbf{Definition 6.2.1.} Consider a system $(W, S)$. The sequence $\mathbf{s} = (s_1, \dots, s_q)$, where $s_i \in S$ for all $i$, is called a word in $S$, and $w := s_1 \dots s_q$ is called the element in $W$ expressed by $\mathbf{s}$. An elementary M-operation on a word in $\mathbf{s}$ is one of the following two types of operations:
 
-(MII) Replace an alternating subword $(s,t,s,...)$ by the other alternating subword $(t,s,t,...)$, both in length $m(s,t)$.
+\begin{itemize}
+    \item \textbf{(MI)} Delete a subword of the form $(s, s)$ from $\mathbf{s}$.
+    \item \textbf{(MII)} Replace an alternating subword $(s, t, s, \dots)$ by another alternating subword $(t, s, t, \dots)$, both of length $m(s,t)$.
+\end{itemize}
 
-We say a word is M-reduced if and only if its length cannot be shorten by M-operations. Clearly, any reduced word is M-reduced.
+We say a word is M-reduced if and only if its length cannot be shortened by M-operations. Clearly, any reduced word is M-reduced.
 
 \vspace{\baselineskip}
-\noindent \textbf{Lemma 2.2} For a system $(W,S)$ with Exchange condition, two reduced representations express the same element in $W$ if and only if one can be transformed to the other by MII operations.
 
-\vspace{0.5\baselineskip} 
-\noindent \textbf{Proof:} Say $\mathbf{s}=(s_1,...,s_q)$ and $\mathbf{r}=(r_1,...,r_q)$ two reduced representations both express $w \in W$. We prove the lemma by induction. 
-
-In case $q=0$,the proof is trivial. If $s_1=r_1$, we can reduce the length of both words by 1 so the induction hypothesis can be applied directly. It suffice to prove the case $s_1 \ne r_1$. We set $m:=m(s_1,r_1)$.
+\noindent \textbf{Lemma 6.2.2.} For a system $(W, S)$ with the exchange condition, two reduced representations express the same element in $W$ if and only if one can be transformed into the other by MII operations.
 
 \vspace{0.5\baselineskip}
-\noindent \textbf{Claim:} m is finite and there is another reduced expression $\mathbf{u}$ of $w$ start with an alternating subword $(s_1,r_1,s_1,...)$ of length $m$.
+
+\noindent \textbf{Proof:} Let $\mathbf{s} = (s_1, \dots, s_q)$ and $\mathbf{r} = (r_1, \dots, r_q)$ be two reduced representations, both expressing $w \in W$. We will prove the lemma by induction.
+
+In the case when $q = 0$, the proof is trivial. If $s_1 = r_1$, we can reduce the length of both words by 1, and the induction hypothesis can be applied directly. It suffices to prove the case where $s_1 \neq r_1$. Let $m := m(s_1, r_1)$.
 
 \vspace{0.5\baselineskip}
-With the claim, the remaining proof is easy. Since $\mathbf{s}$ and $\mathbf{u}$ both start with $s_1$, by induction hypothesis, $\mathbf{s}$ can be transformed into $\mathbf{u}$ by MII operations. Now apply MII on $\mathbf{u}$ to get another word $\mathbf{u'}$ starts with $(r_1,s_1,r_1,...)$ of length $m$. As $\mathbf{u'}$ and $\mathbf{r}$ both start with $r_1$, again by induction hypothesis, $\mathbf{u'}$ can be transformed into $\mathbf{r}$ through MII operations. The combination of all above MII operations gives the result. 
 
-The converse of the proposition is trivial.\qed
-
-\vspace{\baselineskip}
-\noindent \textbf{Proof of the Claim:} Clearly, $l(r_1w) < l(w)$ as $\mathbf{r}$ is a reduced representation of $w$ starting with $r_1$. By the exchange condition there exist an index $i$ such that $r_1s_1...s_{i-1}=s_1...s_i$. Moreover, as $(s_1,...,s_i)$ is a subword of $\mathbf{s}$, which is reduced, $v:=(r_1,s_1,...,s_{i-1},s_{i+1},...,s_q)$ is also a reduced representation of $w$. 
-
-\textit{Note that $i \ne 1$. Otherwise $(s_1,s_2,...,s_q)=(r_1,s_2,...,s_q)$ gives arise to $s_1=r_1$, which is a contradiction. }
-
-Define $S_q$ to be the alternating word end in $s_1$ with each of its term in set $\{s_1,r_1\}$ of length $q$. Suppose $\mathbf{s'}$ a word start with $S_{q-1}$ and let $s'$ to be the element of $\{s_1,r_1\}$ that $\mathbf{s'}$ doesn't start with. 
-
-Looking at $\mathbf{s}$ and $\mathbf{r}$, we get $l(s'w)<l(w)$. Apply the exchange condition we get a reduced representation of $\mathbf{s'}$ start with $s'$. The removed element through exchanging process should not lie in $S_{q-1}$ as any reduced representation with length not equal to $m$ an element in group $D_{2m}$ is unique. This is a fact we learned in Year 2 module Groups and Rings. If the removed term lies in $S_{q-1}$, we get two different reduce representations of element in $D_{2m}$ generated by $s_1,r_1$, length not equal to $m$ after cancellation, which is a contradiction. 
-
-We hence get a reduced representation start with $S_q$ from $\mathbf{s'}$. Hence by induction, $w$ has a reduced expression start with $S_q$ for any $q \le m(s_1,r_1)$ but we have $q \le l(w) < \infty$. So we have $m$ is finite. 
-
-Replace $S_{m(s_1,r_1)}$ with $(s_1,r_1,s_1,...)$ by MII operation, we get the expecting $\mathbf{u}$. \qed 
-
-\subsection{Tit's Theorem}
-\noindent \textbf{Theorem 3.1 (Tit's)} A word in system $(W,S)$ with exchange condition is reduced if and only if it's M-reduced. 
+\noindent \textbf{Claim:} $m$ is finite, and there is another reduced expression $\mathbf{u}$ of $w$ that starts with an alternating subword $(s_1, r_1, s_1, \dots)$ of length $m$.
 
 \vspace{0.5\baselineskip}
-\noindent \textbf{Proof:} Suppose the word $\mathbf{s}=(s_1,...,s_k)$ is M-reduced. We show $\mathbf{s}$ is reduced by induction on $k$. The base case $k=1$ is trivial. 
 
-For $k>1$, by induction hypothesis, $\mathbf{s'}=(s_2,...,s_k)$ is reduced. Say $w'$ the element expressed by $\mathbf{s'}$. Suppose $\mathbf{s}$ is not reduced, then $l(w)=l(s_1\mathbf{s'})\le k-1 < l(\mathbf{s'})$. So by exchange condition, there exist an index $i$ such that $w'=s_1s_2...s_{i-1}s_{i+1}...s_k$. That is, $w'$ has a reduced representation start with $s_1$. Apply Lemma 2.2 we see that $\mathbf{s''}:=(s_1,s_2,...,s_{i-1},s_{i+1},...,s_k)$ can be transformed from $\mathbf{s'}$ by MII operation. This gives a reduced representation of $w$ start with $(s_1,s_1)$, which is a contradiction. 
+With the claim, the remaining proof is easy. Since $\mathbf{s}$ and $\mathbf{u}$ both start with $s_1$, by the induction hypothesis, $\mathbf{s}$ can be transformed into $\mathbf{u}$ by MII operations. Now, apply MII on $\mathbf{u}$ to get another word $\mathbf{u'}$ that starts with $(r_1, s_1, r_1, \dots)$ of length $m$. Since $\mathbf{u'}$ and $\mathbf{r}$ both start with $r_1$, again by the induction hypothesis, $\mathbf{u'}$ can be transformed into $\mathbf{r}$ through MII operations. The combination of all the above MII operations gives the result.
 
-The other direction of the theorem is obvious.\qed
-
-\vspace{\baselineskip}
-Note that Tit's Theorem is far from trivial: The word in a free group can be really messy, even talk about $G=\langle x,y \mid x^n=y^2=(xy)^2=1_G \rangle$ directly is not easy, see Groups and Rings module of Year 2. 
+The converse of the proposition is trivial. \qed
 
 \vspace{\baselineskip}
-\noindent \textbf{Example 3.1} $G:=\langle x,y \mid xyxyx=yxyxy \rangle \cong \langle x,y,a \mid xyxyx=yxyxy,a=xy\rangle \cong \langle x,a \mid aax=x^{-1} aaa\rangle \cong \langle x,a,b \mid a^2x=x^{-1}a^3,b=xa^2\rangle \cong \langle a,b \mid a^2=b^5\rangle$
 
-We can see from the example that although the relation of $G$ is clear, what operations can be done to make reduction is hard to see. Nontrivial process is done here to transfer the group of $x,y$ to a group of $a,b$ and enable us to do reduction.
+\noindent \textbf{Proof of the Claim:} To prove that \( m \) is finite, consider the following. Since \( \mathbf{r} \) is a reduced representation of \( w \) starting with \( r_1 \), it follows that \( l(r_1 w) < l(w) \). By the exchange condition, there exists an index \( i \) such that
+\[
+r_1 s_1 \dots s_{i-1} = s_1 \dots s_i.
+\]
+Moreover, since \( (s_1, \dots, s_i) \) is a subword of \( \mathbf{s} \), which is reduced, we know that the word 
+\[
+v := (r_1, s_1, \dots, s_{i-1}, s_{i+1}, \dots, s_q)
+\]
+is also a reduced representation of \( w \).
 
-There are general tools like Tietze Transformation and Coset enumeration to talk about what we can do on a general group presentation, but it's out of the scope of this project.
+\textit{Note that \( i \neq 1 \). Otherwise, \( (s_1, s_2, \dots, s_q) = (r_1, s_2, \dots, s_q) \), which would imply \( s_1 = r_1 \), a contradiction.}
 
-\section{More on Exchange Condition}
-\noindent \textbf{Proposition 4.1} For system $(W,S)$ with exchange condition such that every element in $S$ has order 2, consider $w\in W$,$s\in S$. If $\mathbf{s}$ is a reduced representation of $w$, exactly one of the following occurs:
+Next, define \( S_q \) to be the alternating word ending in \( s_1 \), with each term in the set \( \{ s_1, r_1 \} \) of length \( q \). Suppose \( \mathbf{s'} \) is a word that starts with \( S_{q-1} \), and let \( s' \) be the element of \( \{ s_1, r_1 \} \) that \( \mathbf{s'} \) does not start with.
 
-(1) $l(sw)=l(w)+1$,$(s,s_1,...,s_q)$ is a reduced representation of $sw$.
-(2) $l(sw)=l(w)-1$,$\exists 1\le j \le q$  such that $(s_1,...,s_{j-1},s_{j+1},...,s_q)$ is a reduced representation of $sw$ and $(s,s_1,...,s_{j-1},s_{j+1},...,s_q)$ is a reduce representation of $w$. 
+Looking at the relationship between \( \mathbf{s} \) and \( \mathbf{r} \), we see that \( l(s' w) < l(w) \). Applying the exchange condition, we obtain a reduced representation of \( \mathbf{s'} \) starting with \( s' \). Importantly, the removed element in this exchange process cannot lie in \( S_{q-1} \), since any reduced representation with a length not equal to \( m \) in a group like \( D_{2m} \) is unique. This fact is learned in the Year 2 module \textit{Groups and Rings}. If the removed term were from \( S_{q-1} \), we would get two different reduced representations of the same element in \( D_{2m} \) with lengths not equal to \( m \), which would be a contradiction.
 
-\noindent \textbf{Proof:} This is a direct application of exchange condition.
+Therefore, we obtain a reduced representation starting with \( S_q \) from \( \mathbf{s'} \). By induction, we conclude that \( w \) has a reduced expression starting with \( S_q \) for any \( q \leq m(s_1, r_1) \), but since \( q \leq l(w) < \infty \), we have that \( m \) is finite.
+
+Finally, by replacing \( S_{m(s_1, r_1)} \) with \( (s_1, r_1, s_1, \dots) \) using an MII operation, we obtain the desired reduced expression \( \mathbf{u} \). \qed
+
+\subsection{Tits' Theorem}
+
+\noindent \textbf{Theorem 6.3.1. (Tits')} A word in a system $(W, S)$ with the exchange condition is reduced if and only if it is M-reduced.
+
+\vspace{0.5\baselineskip}
+
+\noindent \textbf{Proof:} Suppose the word \( \mathbf{s} = (s_1, \dots, s_k) \) is M-reduced. We will show that \( \mathbf{s} \) is reduced by induction on \( k \). The base case \( k = 1 \) is trivial.
+
+For \( k > 1 \), by the induction hypothesis, \( \mathbf{s'} = (s_2, \dots, s_k) \) is reduced. Let \( w' \) be the element expressed by \( \mathbf{s'} \). Suppose \( \mathbf{s} \) is not reduced, then
+\[
+l(w) = l(s_1 \mathbf{s'}) \leq k - 1 < l(\mathbf{s'}).
+\]
+Thus, by the exchange condition, there exists an index \( i \) such that 
+\[
+w' = s_1 s_2 \dots s_{i-1} s_{i+1} \dots s_k.
+\]
+That is, \( w' \) has a reduced representation starting with \( s_1 \). Applying Lemma 6.2.2, we see that \( \mathbf{s''} := (s_1, s_2, \dots, s_{i-1}, s_{i+1}, \dots, s_k) \) can be transformed from \( \mathbf{s'} \) by an MII operation. This gives a reduced representation of \( w \) starting with \( (s_1, s_1) \), which is a contradiction.
+
+The other direction of the theorem is obvious. \qed
+
+\vspace{\baselineskip}
+\noindent \textbf{Note:} Tits' Theorem is far from trivial. For example, when considering a group like \( G = \langle x, y \mid x^n = y^2 = (xy)^2 = 1_G \rangle \), it is not immediately clear how to reduce the word of the group, as shown in the Groups and Rings module of Year 2.
+
+\vspace{\baselineskip}
+\noindent \textbf{Example 6.3.2.} Consider the group \( G := \langle x, y \mid xyxyx = yxyxy \rangle \). This can be rewritten as:
+
+\[
+G \cong \langle x, y, a \mid xyxyx = yxyxy, a = xy \rangle \cong \langle x, a \mid aax = x^{-1} aaa \rangle \cong \]
+
+\[
+\langle x, a, b \mid a^2x = x^{-1}a^3, b = xa^2 \rangle \cong \langle a, b \mid a^2 = b^5 \rangle.
+\]
+
+In this example, we can see that while the relations defining the group \( G \) are clear, the process of simplifying or reducing these relations is far from trivial. The transition from the group generated by \( x \) and \( y \) to the one generated by \( a \) and \( b \) involves several non-trivial steps, and the operations required to perform this reduction are not immediately obvious. This illustrates the difficulty in finding a direct reduction, even when the relations are relatively simple.
+
+There are general tools such as Tietze transformations and coset enumeration that can be used to explore what operations can be performed on a general group presentation to reduce it. However, these methods go beyond the scope of this project and are typically covered in more advanced group theory courses.
+
+\vspace{\baselineskip}
+\noindent \textbf{Conclusion:} While Tits' Theorem provides a powerful framework for reducing words in Coxeter groups, its non-triviality is highlighted by the complexity of group presentations and the reductions that need to be applied. The example above demonstrates how the word problem in even seemingly simple groups can become quite intricate and challenging.
+
 
 \end{document}
